@@ -4,8 +4,8 @@ import logo from "../assets/Logos/Logo SOFT.png";
 
 // 🎨 Variables editables
 const HEADER_HEIGHT = "72px"; 
-const HEADER_BG = "rgba(255, 255, 255, 0.05)";
-const HEADER_BORDER = "#ffffff";
+const HEADER_BG = "transparent";
+const HEADER_BORDER = "transparent";
 
 const COLOR_NAV_LINK = "#F1F5F9";
 const COLOR_NAV_HOVER = "#4498C2";
@@ -42,10 +42,10 @@ export default function Header() {
                 left: 0,
                 zIndex: 1000,
                 background: HEADER_BG,
-                backdropFilter: "blur(12px)",
+                backdropFilter: "none",
                 borderBottom: `2px solid ${HEADER_BORDER}`,
                 fontFamily: FONT_FAMILY,
-                boxShadow: "0 2px 16px rgba(0, 0, 0, 0.1)",
+                boxShadow: "none",
                 height: HEADER_HEIGHT,
             }}
         >

@@ -4,8 +4,8 @@ import React from "react";
 
 // 🎨 Variables editables
 const VIDEO_BG = false; // ✅ Cambiar esto a true si se usa un video de fondo
-const VIDEO_SRC = "/src/assets/Videos/Backgro_Gix.mp4"; // 🎥 Ruta del video
-const IMAGE_BG = "/src/assets/Backgrounds/softia4HACKT.jpg"; // 🖼️ Ruta de imagen
+const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4"; // 🎥 Ruta del video
+const IMAGE_BG = "/src/assets/Backgrounds/softia3uni.jpg"; // 🖼️ Ruta de imagen
 
 const OVERLAY_COLOR = "rgba(0, 0, 0, 0.5)"; // Fondo translúcido azul oscuro
 const TEXT_COLOR = "#FFFFFF";
@@ -20,45 +20,48 @@ const Hero: React.FC = () => {
         <section
             style={{
                 position: "relative",
-                width: "100%",
+                width: "100vw",
                 height: "100vh",
                 overflow: "hidden",
                 fontFamily: FONT_FAMILY,
             }}
         >
             {/* 🎥 Video o Imagen de fondo */}
-            {VIDEO_BG ? (
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        zIndex: -2,
-                    }}
-                    src={VIDEO_SRC}
-                />
-            ) : (
-                <img
-                    src={IMAGE_BG}
-                    alt="Hero Background"
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        zIndex: -2,
-                    }}
-                />
-            )}
+            <div
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100vw",
+                    height: "100vh",
+                    zIndex: -2,
+                }}
+            >
+                {VIDEO_BG ? (
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                        }}
+                        src={VIDEO_SRC}
+                    />
+                ) : (
+                    <img
+                        src={IMAGE_BG}
+                        alt="Hero Background"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                        }}
+                    />
+                )}
+            </div>
 
             {/* Overlay */}
             <div
@@ -67,8 +70,8 @@ const Hero: React.FC = () => {
                     position: "absolute",
                     top: 0,
                     left: 0,
-                    width: "100%",
-                    height: "100%",
+                    width: "100vw",
+                    height: "100vh",
                     zIndex: -1,
                 }}
             />
@@ -76,12 +79,14 @@ const Hero: React.FC = () => {
             {/* Contenido */}
             <div
                 style={{
-                    maxWidth: "1400px",
-                    margin: "0 auto",
-                    padding: "0 2rem",
-                    height: "100%",
+                    position: "relative",
+                    zIndex: 1,
+                    width: "100vw",
+                    height: "100vh",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "flex-start",
+                    padding: "0 3rem",
                 }}
             >
                 <motion.div
@@ -91,21 +96,21 @@ const Hero: React.FC = () => {
                     style={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "1.5rem",
-                        maxWidth: "600px",
+                        gap: "0.1rem",
+                        maxWidth: "500px",
                     }}
                 >
                     <img
                         src={logo}
                         alt="SOFT - IA Logo"
-                        style={{ width: "180px", objectFit: "contain" }}
+                        style={{ width: "400px", objectFit: "contain" }}
                     />
 
-                    <h1 style={{ color: TEXT_COLOR, fontSize: "2rem", fontWeight: "bold" }}>
+                    <h1 style={{ color: TEXT_COLOR, fontSize: "2.5rem", fontWeight: "bold" }}>
                         Agencia De <span style={{ color: HIGHLIGHT_COLOR }}>Desarrollo y Diseño</span>
                     </h1>
 
-                    <p style={{ color: TEXT_COLOR, fontSize: "1rem", lineHeight: 1.6 }}>
+                    <p style={{ color: TEXT_COLOR, fontSize: "1rem", lineHeight: 1 }}>
                         Desde Nicaragua, diseñamos y desarrollamos soluciones digitales con un equipo que combina visión, tecnología y experiencia.
                     </p>
 

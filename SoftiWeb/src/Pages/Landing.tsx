@@ -1,6 +1,6 @@
 import Hero from "../Components/Hero";
 
-export default function Home(){
+export default function Landing(){
     return (
         <>
         <Hero/>
