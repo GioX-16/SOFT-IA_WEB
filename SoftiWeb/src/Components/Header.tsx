@@ -1,84 +1,94 @@
 import { Link } from "react-router-dom";
-import logo from '../assets/Logos/Logo SOFT.png';
+import { motion } from "framer-motion";
+import logo from "../assets/Logos/Logo SOFT.png";
 
-// Variables editables para personalización
-const HEADER_BG = 'rgba(161, 161, 161, 0.3)'; // Fondo transparente
-const HEADER_BORDER = '#6EE7B7';
-const NAV_LINK_COLOR = '#F1F5F9';
-const NAV_LINK_HOVER = '#60A5FA';
-const LOGO_TEXT_COLOR = '#60A5FA';
-const LOGO_TEXT_SHADOW = '#0EA5E9';
-const BUTTON_BG = '#38BDF8';
-const BUTTON_BG_HOVER = '#0EA5E9';
-const BUTTON_SHADOW = '#0EA5E9';
-const GAP_NAV = '1.1rem'; // Menor separación
-const HEADER_HEIGHT = '72px';
-const LOGO_SIZE = '44px';
-const FONT_FAMILY = 'Play, sans-serif';
+// 🎨 Variables editables
+const HEADER_HEIGHT = "72px"; 
+const HEADER_BG = "rgba(255, 255, 255, 0.05)";
+const HEADER_BORDER = "#ffffff";
 
-const navLinks = [
+const COLOR_NAV_LINK = "#F1F5F9";
+const COLOR_NAV_HOVER = "#4498C2";
+
+const BUTTON_BG = "#4498C2";
+const BUTTON_BG_HOVER = "#1F2E36";
+const BUTTON_TEXT = "#FFFFFF";
+
+const LOGO_WIDTH = "200px";
+const NAV_GAP = "7rem";
+const FONT_FAMILY = "'Play', sans-serif";
+
+const navLinksLeft = [
     { to: "/portfolio", label: "Portfolio" },
     { to: "/servicios", label: "Services" },
     { to: "/team", label: "Team" },
+];
+
+const navLinksRight = [
     { to: "/about", label: "About Us" },
     { to: "/testimonios", label: "Testimonials" },
 ];
 
 export default function Header() {
     return (
-        <header
+        <motion.header
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             style={{
-                width: '100%',
-                position: 'fixed',
+                width: "100%",
+                position: "fixed",
                 top: 0,
                 left: 0,
                 zIndex: 1000,
                 background: HEADER_BG,
-                boxShadow: '0 2px 16px 0 rgba(0,0,0,0.10)',
-                backdropFilter: 'blur(12px)',
+                backdropFilter: "blur(12px)",
                 borderBottom: `2px solid ${HEADER_BORDER}`,
                 fontFamily: FONT_FAMILY,
+                boxShadow: "0 2px 16px rgba(0, 0, 0, 0.1)",
+                height: HEADER_HEIGHT,
             }}
         >
             <div
                 style={{
-                    maxWidth: '1400px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    height: HEADER_HEIGHT,
-                    padding: '0 2rem',
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "0 2rem",
                 }}
             >
-                {/* Navegación izquierda */}
-                <nav style={{ flex: 1 }}>
+                {/* Nav izquierda */}
+                <nav>
                     <ul
                         style={{
-                            display: 'flex',
-                            gap: GAP_NAV,
-                            listStyle: 'none',
+                            display: "flex",
+                            gap: NAV_GAP,
+                            listStyle: "none",
                             margin: 0,
                             padding: 0,
-                            justifyContent: 'flex-start',
-                            alignItems: 'center',
-                            height: '100%',
+                            alignItems: "center",
                         }}
                     >
-                        {navLinks.slice(0, 3).map((link) => (
+                        {navLinksLeft.map((link) => (
                             <li key={link.to}>
                                 <Link
                                     to={link.to}
                                     style={{
-                                        textDecoration: 'none',
-                                        color: NAV_LINK_COLOR,
-                                        fontWeight: 700,
-                                        fontSize: '1rem',
-                                        letterSpacing: '0.5px',
-                                        transition: 'color 0.2s',
+                                        color: COLOR_NAV_LINK,
+                                        textDecoration: "none",
+                                        fontWeight: 600,
+                                        fontSize: "1.2rem",
+                                        transition: "color 0.3s ease",
                                     }}
-                                    onMouseOver={e => (e.currentTarget.style.color = NAV_LINK_HOVER)}
-                                    onMouseOut={e => (e.currentTarget.style.color = NAV_LINK_COLOR)}
+                                    onMouseEnter={(e) =>
+                                        (e.currentTarget.style.color = COLOR_NAV_HOVER)
+                                    }
+                                    onMouseLeave={(e) =>
+                                        (e.currentTarget.style.color = COLOR_NAV_LINK)
+                                    }
                                 >
                                     {link.label}
                                 </Link>
@@ -88,42 +98,43 @@ export default function Header() {
                 </nav>
 
                 {/* Logo central */}
-                <div style={{ flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ flexShrink: 0 }}>
                     <img
                         src={logo}
-                        alt="Logo Soft-IA"
-                        style={{ height: '200px', width: '200px', objectFit: 'contain' }}
+                        alt="Logo SOFT-IA"
+                        style={{ width: LOGO_WIDTH, objectFit: "contain" }}
                     />
-                    
                 </div>
 
-                {/* Navegación derecha + botón */}
-                <nav style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: GAP_NAV }}>
+                {/* Nav derecha + botón */}
+                <nav>
                     <ul
                         style={{
-                            display: 'flex',
-                            gap: GAP_NAV,
-                            listStyle: 'none',
+                            display: "flex",
+                            gap: NAV_GAP,
+                            listStyle: "none",
                             margin: 0,
                             padding: 0,
-                            alignItems: 'center',
-                            height: '100%',
+                            alignItems: "center",
                         }}
                     >
-                        {navLinks.slice(3).map((link) => (
+                        {navLinksRight.map((link) => (
                             <li key={link.to}>
                                 <Link
                                     to={link.to}
                                     style={{
-                                        textDecoration: 'none',
-                                        color: NAV_LINK_COLOR,
-                                        fontWeight: 700,
-                                        fontSize: '1rem',
-                                        letterSpacing: '0.5px',
-                                        transition: 'color 0.2s',
+                                        color: COLOR_NAV_LINK,
+                                        textDecoration: "none",
+                                        fontWeight: 600,
+                                        fontSize: "1.2rem",
+                                        transition: "color 0.3s ease",
                                     }}
-                                    onMouseOver={e => (e.currentTarget.style.color = NAV_LINK_HOVER)}
-                                    onMouseOut={e => (e.currentTarget.style.color = NAV_LINK_COLOR)}
+                                    onMouseEnter={(e) =>
+                                        (e.currentTarget.style.color = COLOR_NAV_HOVER)
+                                    }
+                                    onMouseLeave={(e) =>
+                                        (e.currentTarget.style.color = COLOR_NAV_LINK)
+                                    }
                                 >
                                     {link.label}
                                 </Link>
@@ -133,19 +144,22 @@ export default function Header() {
                             <Link
                                 to="/contacto"
                                 style={{
-                                    display: 'inline-block',
                                     background: BUTTON_BG,
-                                    color: '#fff',
-                                    fontWeight: 700,
-                                    fontSize: '1rem',
-                                    borderRadius: '1.5rem',
-                                    padding: '0.5rem 1.5rem',
-                                    textDecoration: 'none',
-                                    boxShadow: `0 2px 8px 0 ${BUTTON_SHADOW}`,
-                                    transition: 'background 0.2s, color 0.2s',
+                                    color: BUTTON_TEXT,
+                                    fontWeight: 600,
+                                    fontSize: "1.2rem",
+                                    borderRadius: "9999px",
+                                    padding: "0.5rem 1.5rem",
+                                    textDecoration: "none",
+                                    boxShadow: `0 2px 8px 0 ${BUTTON_BG}`,
+                                    transition: "background 0.2s ease",
                                 }}
-                                onMouseOver={e => (e.currentTarget.style.background = BUTTON_BG_HOVER)}
-                                onMouseOut={e => (e.currentTarget.style.background = BUTTON_BG)}
+                                onMouseEnter={(e) =>
+                                    (e.currentTarget.style.background = BUTTON_BG_HOVER)
+                                }
+                                onMouseLeave={(e) =>
+                                    (e.currentTarget.style.background = BUTTON_BG)
+                                }
                             >
                                 Contact Us
                             </Link>
@@ -153,7 +167,6 @@ export default function Header() {
                     </ul>
                 </nav>
             </div>
-        </header>
+        </motion.header>
     );
-} 
-
+}
