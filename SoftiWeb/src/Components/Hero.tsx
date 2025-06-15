@@ -3,9 +3,9 @@ import logo from "../assets/Logos/Logo SOFT.png";
 import React from "react";
 
 // 🎨 Variables editables
-const VIDEO_BG = false; // ✅ Cambiar esto a true si se usa un video de fondo
+const VIDEO_BG = true; // ✅ Cambiar esto a true si se usa un video de fondo
 const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4"; //   Ruta del video
-const IMAGE_BG = "/src/assets/Backgrounds/softia3uni.jpg"; //  Ruta de imagen
+const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg"; //  Ruta de imagen
 
 const OVERLAY_COLOR = "rgba(0, 0, 0, 0.5)"; // Fondo translúcido azul oscuro
 const TEXT_COLOR = "#FFFFFF";
