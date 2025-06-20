@@ -4,8 +4,8 @@ import logo from "../assets/Logos/Logo SOFT.png";
 import React, { useEffect, useState } from "react";
 
 // 🎥 Configuración
-const VIDEO_BG = true;
-const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4";
+const VIDEO_BG = false;
+const VIDEO_SRC = "/src/assets/Videos/Background_Final.mp4";
 const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg";
 
 // 🎨 Variables de estilo
@@ -19,7 +19,7 @@ const FONT_FAMILY = "'Play', sans-serif";
 
 const Hero: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
-    const [videoLoaded, setVideoLoaded] = useState(false);
+/*     const [videoLoaded, setVideoLoaded] = useState(false); */
 
     useEffect(() => {
         const handleResize = () => {
@@ -45,28 +45,53 @@ const Hero: React.FC = () => {
                     : undefined,
             }}
         >
-            {/* VIDEO SOLO COMO BLOQUE EN MÓVIL */}
-            {isMobile && VIDEO_BG && (
+            {/* VIDEO O IMAGEN COMO BLOQUE EN MÓVIL */}
+            {isMobile && (
                 <div
                     style={{
                         width: "100%",
-                        height: "200px",
+                        height: "400px",
                         overflow: "hidden",
+                        position: "relative",
                     }}
                 >
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        onCanPlayThrough={() => setVideoLoaded(true)}
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                        }}
-                        src={VIDEO_SRC}
-                    />
+                    {VIDEO_BG ? (
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                            }}
+                            src={VIDEO_SRC}
+                        />
+                    ) : (
+                        <>
+                            <img
+                                src={IMAGE_BG}
+                                alt="Hero Background"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                }}
+                            />
+                            <div
+                                style={{
+                                    backgroundColor: OVERLAY_COLOR,
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    zIndex: 1,
+                                }}
+                            />
+                        </>
+                    )}
                 </div>
             )}
 
@@ -109,19 +134,32 @@ const Hero: React.FC = () => {
                             />
                         </div>
                     ) : (
-                        <img
-                            src={IMAGE_BG}
-                            alt="Hero Background"
-                            style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                zIndex: -2,
-                            }}
-                        />
+                        <>
+                            <img
+                                src={IMAGE_BG}
+                                alt="Hero Background"
+                                style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    zIndex: -2,
+                                }}
+                            />
+                            <div
+                                style={{
+                                    backgroundColor: OVERLAY_COLOR,
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    zIndex: -1,
+                                }}
+                            />
+                        </>
                     )}
                 </>
             )}
