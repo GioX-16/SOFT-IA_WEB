@@ -71,7 +71,10 @@ export default function Header() {
                         <img
                             src={logo}
                             alt="Logo SOFT-IA"
-                            style={{ width: "140px", objectFit: "contain" }}
+                            style={{ width: "140px", objectFit: "contain", cursor: "pointer" }}
+                            onClick={() => {
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                            }}
                         />
                     </div>
                 )}
