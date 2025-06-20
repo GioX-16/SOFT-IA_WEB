@@ -1,12 +1,14 @@
 // Hero.tsx
 import { motion } from "framer-motion";
 import logo from "../assets/Logos/Logo SOFT.png";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+// 🎥 Configuración
 const VIDEO_BG = true;
 const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4";
 const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg";
 
+// 🎨 Variables de estilo
 const OVERLAY_COLOR = "rgba(0, 0, 0, 0.6)";
 const TEXT_COLOR = "#FFFFFF";
 const HIGHLIGHT_COLOR = "#38BDF8";
@@ -16,33 +18,48 @@ const BUTTON_TEXT_COLOR = "#FFFFFF";
 const FONT_FAMILY = "'Play', sans-serif";
 
 const Hero: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(false);
+    const [videoLoaded, setVideoLoaded] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     return (
         <section
             style={{
                 position: "relative",
                 width: "100vw",
-                height: "100vh",
+                minHeight: "100vh",
                 overflow: "hidden",
                 fontFamily: FONT_FAMILY,
+                display: "flex",
+                flexDirection: "column",
+                background: isMobile
+                    ? "linear-gradient(to right, #1A1B1C, #4498C2)"
+                    : undefined,
             }}
         >
-            {/* 🎥 Fondo */}
-            <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    zIndex: -2,
-                }}
-            >
-                {VIDEO_BG ? (
+            {/* VIDEO SOLO COMO BLOQUE EN MÓVIL */}
+            {isMobile && VIDEO_BG && (
+                <div
+                    style={{
+                        width: "100%",
+                        height: "200px",
+                        overflow: "hidden",
+                    }}
+                >
                     <video
                         autoPlay
                         loop
                         muted
                         playsInline
+                        onCanPlayThrough={() => setVideoLoaded(true)}
                         style={{
                             width: "100%",
                             height: "100%",
@@ -50,43 +67,79 @@ const Hero: React.FC = () => {
                         }}
                         src={VIDEO_SRC}
                     />
-                ) : (
-                    <img
-                        src={IMAGE_BG}
-                        alt="Hero Background"
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                        }}
-                    />
-                )}
-            </div>
+                </div>
+            )}
 
-            {/* Overlay oscuro */}
+            {/* VIDEO COMO FONDO EN ESCRITORIO */}
+            {!isMobile && (
+                <>
+                    {VIDEO_BG ? (
+                        <div
+                            style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%",
+                                zIndex: -2,
+                            }}
+                        >
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                }}
+                                src={VIDEO_SRC}
+                            />
+                            <div
+                                style={{
+                                    backgroundColor: OVERLAY_COLOR,
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    zIndex: 1,
+                                }}
+                            />
+                        </div>
+                    ) : (
+                        <img
+                            src={IMAGE_BG}
+                            alt="Hero Background"
+                            style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                zIndex: -2,
+                            }}
+                        />
+                    )}
+                </>
+            )}
+
+            {/* CONTENIDO PRINCIPAL */}
             <div
                 style={{
-                    backgroundColor: OVERLAY_COLOR,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    zIndex: -1,
-                }}
-            />
-
-            {/* Contenido */}
-            <div
-                style={{
-                    position: "relative",
-                    zIndex: 1,
-                    width: "100%",
-                    height: "100%",
+                    zIndex: 2,
+                    flex: 1,
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    padding: "0 3vw",
+                    flexDirection: "column",
+                    justifyContent: isMobile ? "center" : "flex-start",
+                    alignItems: isMobile ? "center" : "flex-start",
+                    padding: isMobile ? "1rem 1.5rem" : "15rem 5vw 2rem 5vw",
+                    maxWidth: "1200px",
+                    margin: isMobile ? "0 auto" : "0",
+                    marginTop: isMobile ? "-2.5rem" : "0",
+                    textAlign: isMobile ? "center" : "left",
                 }}
             >
                 <motion.div
@@ -96,37 +149,43 @@ const Hero: React.FC = () => {
                     style={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "0.2rem",
+                        gap: "0.1rem",
                         maxWidth: "600px",
+                        alignItems: isMobile ? "center" : "flex-start",
                     }}
                 >
                     <img
                         src={logo}
                         alt="SOFT - IA Logo"
                         style={{
-                            width: "clamp(200px, 30vw, 400px)",
+                            width: "clamp(150px, 30vw, 300px)",
                             objectFit: "contain",
                         }}
                     />
 
-                    <h1 style={{
-                        color: TEXT_COLOR,
-                        fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                        fontWeight: "bold",
-                        lineHeight: 1.2,
-                    }}>
+                    <h1
+                        style={{
+                            color: TEXT_COLOR,
+                            fontSize: "clamp(1.5rem, 4vw, 2.8rem)",
+                            fontWeight: "bold",
+                            lineHeight: 1.2,
+                        }}
+                    >
                         Agencia De{" "}
                         <span style={{ color: HIGHLIGHT_COLOR }}>
                             Desarrollo y Diseño
                         </span>
                     </h1>
 
-                    <p style={{
-                        color: TEXT_COLOR,
-                        fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
-                        lineHeight: 1.4,
-                    }}>
-                        Desde Nicaragua, diseñamos y desarrollamos soluciones digitales con un equipo que combina visión, tecnología y experiencia.
+                    <p
+                        style={{
+                            color: TEXT_COLOR,
+                            fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+                            lineHeight: 1.5,
+                        }}
+                    >
+                        Desde Nicaragua, diseñamos y desarrollamos soluciones digitales con
+                        un equipo que combina visión, tecnología y experiencia.
                     </p>
 
                     <a
@@ -153,21 +212,6 @@ const Hero: React.FC = () => {
                     </a>
                 </motion.div>
             </div>
-
-            Si en el futuro agregas navegación aquí, puedes usar este bloque como referencia:
-            <nav
-                style={{
-                    display: "flex", // Para alinear los elementos de navegación en fila
-                    gap: "2rem",      // Espacio entre los elementos de navegación (modifica aquí)
-                    padding: "1rem 2rem", // Espaciado interno del nav (modifica aquí)
-                    fontSize: "1.2rem",   // Tamaño de fuente de los links (modifica aquí)
-                    // Otros estilos que quieras modificar
-                }}
-            >
-                <a href="#" style={{ color: "white", textDecoration: "none" }}>Inicio</a>
-                <a href="#" style={{ color: "white", textDecoration: "none" }}>Servicios</a>
-                <a href="#" style={{ color: "white", textDecoration: "none" }}>Contacto</a>
-            </nav>
         </section>
     );
 };
