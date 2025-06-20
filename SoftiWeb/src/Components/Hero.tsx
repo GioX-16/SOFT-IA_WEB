@@ -1,15 +1,15 @@
+// Hero.tsx
 import { motion } from "framer-motion";
-import logo from "../assets/Logos/Logo SOFT.png"; 
+import logo from "../assets/Logos/Logo SOFT.png";
 import React from "react";
 
-// 🎨 Variables editables
-const VIDEO_BG = false; // ✅ Cambiar esto a true si se usa un video de fondo
-const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4"; //   Ruta del video
-const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg"; //  Ruta de imagen
+const VIDEO_BG = true;
+const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4";
+const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg";
 
-const OVERLAY_COLOR = "rgba(0, 0, 0, 0.5)"; // Fondo translúcido azul oscuro
+const OVERLAY_COLOR = "rgba(0, 0, 0, 0.6)";
 const TEXT_COLOR = "#FFFFFF";
-const HIGHLIGHT_COLOR = "#38BDF8"; // Color azul del diseño
+const HIGHLIGHT_COLOR = "#38BDF8";
 const BUTTON_BG = "#38BDF8";
 const BUTTON_BG_HOVER = "#1F2E36";
 const BUTTON_TEXT_COLOR = "#FFFFFF";
@@ -26,14 +26,14 @@ const Hero: React.FC = () => {
                 fontFamily: FONT_FAMILY,
             }}
         >
-            {/* 🎥 Video o Imagen de fondo */}
+            {/* 🎥 Fondo */}
             <div
                 style={{
                     position: "absolute",
                     top: 0,
                     left: 0,
-                    width: "100vw",
-                    height: "100vh",
+                    width: "100%",
+                    height: "100%",
                     zIndex: -2,
                 }}
             >
@@ -63,15 +63,15 @@ const Hero: React.FC = () => {
                 )}
             </div>
 
-            {/* Overlay */}
+            {/* Overlay oscuro */}
             <div
                 style={{
                     backgroundColor: OVERLAY_COLOR,
                     position: "absolute",
                     top: 0,
                     left: 0,
-                    width: "100vw",
-                    height: "100vh",
+                    width: "100%",
+                    height: "100%",
                     zIndex: -1,
                 }}
             />
@@ -81,12 +81,12 @@ const Hero: React.FC = () => {
                 style={{
                     position: "relative",
                     zIndex: 1,
-                    width: "100vw",
-                    height: "100vh",
+                    width: "100%",
+                    height: "100%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
-                    padding: "0 3rem",
+                    padding: "0 3vw",
                 }}
             >
                 <motion.div
@@ -96,21 +96,36 @@ const Hero: React.FC = () => {
                     style={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "0.1rem",
-                        maxWidth: "500px",
+                        gap: "0.2rem",
+                        maxWidth: "600px",
                     }}
                 >
                     <img
                         src={logo}
                         alt="SOFT - IA Logo"
-                        style={{ width: "400px", objectFit: "contain" }}
+                        style={{
+                            width: "clamp(200px, 30vw, 400px)",
+                            objectFit: "contain",
+                        }}
                     />
 
-                    <h1 style={{ color: TEXT_COLOR, fontSize: "2.5rem", fontWeight: "bold" }}>
-                        Agencia De <span style={{ color: HIGHLIGHT_COLOR }}>Desarrollo y Diseño</span>
+                    <h1 style={{
+                        color: TEXT_COLOR,
+                        fontSize: "clamp(1.8rem, 4vw, 3rem)",
+                        fontWeight: "bold",
+                        lineHeight: 1.2,
+                    }}>
+                        Agencia De{" "}
+                        <span style={{ color: HIGHLIGHT_COLOR }}>
+                            Desarrollo y Diseño
+                        </span>
                     </h1>
 
-                    <p style={{ color: TEXT_COLOR, fontSize: "1rem", lineHeight: 1 }}>
+                    <p style={{
+                        color: TEXT_COLOR,
+                        fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
+                        lineHeight: 1.4,
+                    }}>
                         Desde Nicaragua, diseñamos y desarrollamos soluciones digitales con un equipo que combina visión, tecnología y experiencia.
                     </p>
 
@@ -123,9 +138,9 @@ const Hero: React.FC = () => {
                             borderRadius: "9999px",
                             fontWeight: "bold",
                             fontSize: "1rem",
-                            textDecoration: "none",
                             width: "fit-content",
-                            transition: "background 0.3s ease",
+                            textDecoration: "none",
+                            transition: "all 0.3s ease",
                         }}
                         onMouseEnter={(e) =>
                             (e.currentTarget.style.background = BUTTON_BG_HOVER)
