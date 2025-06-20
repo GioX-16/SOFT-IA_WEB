@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import logo from "../assets/Logos/Logo SOFT.png";
 import React from "react";
 
-const VIDEO_BG = true;
+const VIDEO_BG = false;
 const VIDEO_SRC = "/src/assets/Videos/Back_BG_Soft.mp4";
 const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg";
 
@@ -153,6 +153,21 @@ const Hero: React.FC = () => {
                     </a>
                 </motion.div>
             </div>
+
+            Si en el futuro agregas navegación aquí, puedes usar este bloque como referencia:
+            <nav
+                style={{
+                    display: "flex", // Para alinear los elementos de navegación en fila
+                    gap: "2rem",      // Espacio entre los elementos de navegación (modifica aquí)
+                    padding: "1rem 2rem", // Espaciado interno del nav (modifica aquí)
+                    fontSize: "1.2rem",   // Tamaño de fuente de los links (modifica aquí)
+                    // Otros estilos que quieras modificar
+                }}
+            >
+                <a href="#" style={{ color: "white", textDecoration: "none" }}>Inicio</a>
+                <a href="#" style={{ color: "white", textDecoration: "none" }}>Servicios</a>
+                <a href="#" style={{ color: "white", textDecoration: "none" }}>Contacto</a>
+            </nav>
         </section>
     );
 };
