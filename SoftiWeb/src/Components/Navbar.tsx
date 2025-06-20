@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const NAV_ITEMS = [
-    { label: "Home", to: "/" },
-    { label: "Portfolio", to: "/portfolio" },
-    { label: "Team", to: "/team" },
-    { label: "Services", to: "/services" },
-    { label: "Testimonials", to: "/testimonials" },
-    { label: "Contact Us", to: "/contacto", isButton: true },
+    { label: "Inicio", to: "top" },
+    { label: "Proyectos", to: "portfolio" },
+    { label: "Equipo", to: "team" },
+    { label: "Servicios", to: "services" },
+    { label: "Testimonios", to: "testimonials" },
+    { label: "Contactanos", to: "contact", isButton: true },
 ];
 
 const Navbar = () => {
@@ -60,7 +59,7 @@ const Navbar = () => {
             }}
         >
             {NAV_ITEMS.map((item) =>
-                item.label === "Home" ? (
+                item.to === "top" ? (
                     <a
                         key={item.to}
                         href="#"
@@ -72,19 +71,19 @@ const Navbar = () => {
                             transition: "color 0.3s ease",
                             cursor: "pointer",
                         }}
-                        onClick={(e) => {
+                        onClick={e => {
                             e.preventDefault();
                             window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = "#1F2E36")}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
+                        onMouseEnter={e => (e.currentTarget.style.color = "#1F2E36")}
+                        onMouseLeave={e => (e.currentTarget.style.color = "#ffffff")}
                     >
                         {item.label}
                     </a>
                 ) : item.isButton ? (
-                    <Link
+                    <a
                         key={item.to}
-                        to={item.to}
+                        href={`#${item.to}`}
                         style={{
                             backgroundColor: "#1F2E36",
                             color: "#fff",
@@ -94,31 +93,50 @@ const Navbar = () => {
                             textDecoration: "none",
                             fontSize: "1rem",
                             transition: "all 0.3s ease",
+                            cursor: "pointer",
                         }}
-                        onMouseEnter={(e) =>
-                            (e.currentTarget.style.backgroundColor = "#1F2E36")
-                        }
-                        onMouseLeave={(e) =>
-                            (e.currentTarget.style.backgroundColor = "#38BDF8")
-                        }
+                        onClick={e => {
+                            e.preventDefault();
+                            const section = document.getElementById(item.to);
+                            if (section) {
+                                section.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                        onMouseEnter={e => {
+                            e.currentTarget.style.backgroundColor = "#38BDF8";
+                            e.currentTarget.style.color = "#1F2E36";
+                        }}
+                        onMouseLeave={e => {
+                            e.currentTarget.style.backgroundColor = "#1F2E36";
+                            e.currentTarget.style.color = "#fff";
+                        }}
                     >
                         {item.label}
-                    </Link>
+                    </a>
                 ) : (
-                    <Link
+                    <a
                         key={item.to}
-                        to={item.to}
+                        href={`#${item.to}`}
                         style={{
                             color: "#ffffff",
                             textDecoration: "none",
                             fontWeight: 700,
                             fontSize: "1rem",
                             transition: "color 0.3s ease",
+                            cursor: "pointer",
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = "#1F2E36")}
+                        onClick={e => {
+                            e.preventDefault();
+                            const section = document.getElementById(item.to);
+                            if (section) {
+                                section.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                        onMouseEnter={e => (e.currentTarget.style.color = "#1F2E36")}
+                        onMouseLeave={e => (e.currentTarget.style.color = "#ffffff")}
                     >
                         {item.label}
-                    </Link>
+                    </a>
                 )
             )}
         </motion.nav>

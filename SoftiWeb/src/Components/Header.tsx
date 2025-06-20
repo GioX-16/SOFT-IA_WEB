@@ -14,14 +14,14 @@ const MOBILE_MENU_BG = "#1F2E36"; //  Color personalizado al abrir menú móvil
 const FONT_FAMILY = "'Play', sans-serif";
 
 const navLinksLeft = [
-    { to: "portfolio", label: "Proyectos" },
-    { to: "services", label: "Servicios" },
-    { to: "team", label: "Equipo" },
+    { to: "portfolio", label: "PROYECTOS" },
+    { to: "services", label: "SERVICIOS" },
+    { to: "team", label: "EQUIPO" },
 ];
 
 const navLinksRight = [
-    { to: "about", label: "About Us" },
-    { to: "testimonials", label: "Testimonios" },
+    { to: "about", label: "NOSOTROS" },
+    { to: "testimonials", label: "TESTIMONIOS" },
 ];
 
 export default function Header() {

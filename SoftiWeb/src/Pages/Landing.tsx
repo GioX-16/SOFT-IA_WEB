@@ -2,6 +2,7 @@ import Hero from "../Components/Hero";
 import Navbar from "../Components/Navbar";
 import AboutUs from "../Components/AboutSection";
 import Header from "../Components/Header";
+import TeamSection from "../Components/TeamSection";
 import { useEffect, useState } from "react";
 
 export default function Landing() {
@@ -32,6 +33,7 @@ export default function Landing() {
             {showNavbar && <Navbar />}
             <Hero />
             <AboutUs />
+            <TeamSection />
         </>
     );
 }
