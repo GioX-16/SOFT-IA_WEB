@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import React from "react";
 import aboutImage from "../assets/img/Presentacion Landing.png"; 
+import Header from "./Header";
 
 const tags = [
     "Developers",
@@ -32,6 +33,7 @@ const AboutUs: React.FC = () => {
                 color: "#fff",
             }}
         >
+            {isMobile && <Header />}
             <h2
                 style={{
                     textAlign: "center",
@@ -56,12 +58,11 @@ const AboutUs: React.FC = () => {
             >
                 {/* 📸 Imagen principal única */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0, x: -100, scale: 0.8 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    transition={{ duration: 0.9, ease: "easeOut" }}
                     viewport={{ once: true }}
                     style={{
-                        
                         maxWidth: "600px",
                         borderRadius: "20px",
                         overflow: "hidden",
@@ -114,11 +115,13 @@ const AboutUs: React.FC = () => {
                     justifyContent: "center",
                 }}
             >
-                {tags.map((tag) => (
+                {tags.map((tag, idx) => (
                     <motion.div
                         key={tag}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 + idx * 0.12, ease: "easeOut" }}
+                        viewport={{ once: true }}
                         style={{
                             padding: "0.7rem 1rem",
                             border: "2px solid #ffffff66",
