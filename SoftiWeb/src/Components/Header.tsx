@@ -14,14 +14,14 @@ const MOBILE_MENU_BG = "#1F2E36"; //  Color personalizado al abrir menú móvil
 const FONT_FAMILY = "'Play', sans-serif";
 
 const navLinksLeft = [
-    { to: "/portfolio", label: "Portfolio" },
-    { to: "/servicios", label: "Services" },
-    { to: "/team", label: "Team" },
+    { to: "portfolio", label: "Proyectos" },
+    { to: "services", label: "Servicios" },
+    { to: "team", label: "Equipo" },
 ];
 
 const navLinksRight = [
-    { to: "/about", label: "About Us" },
-    { to: "/testimonios", label: "Testimonials" },
+    { to: "about", label: "About Us" },
+    { to: "testimonials", label: "Testimonios" },
 ];
 
 export default function Header() {
@@ -82,19 +82,27 @@ export default function Header() {
                     <ul style={{ display: "flex", gap: "7rem", listStyle: "none", margin: 0, padding: 0 }}>
                         {navLinksLeft.map((link) => (
                             <li key={link.to}>
-                                <Link
-                                    to={link.to}
+                                <a
+                                    href={`#${link.to}`}
                                     style={{
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontWeight: 600,
                                         fontSize: "1rem",
+                                        cursor: "pointer",
                                     }}
-                                    onMouseEnter={(e) => (e.currentTarget.style.color = COLOR_NAV_HOVER)}
-                                    onMouseLeave={(e) => (e.currentTarget.style.color = COLOR_NAV_LINK)}
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        const section = document.getElementById(link.to);
+                                        if (section) {
+                                            section.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    onMouseEnter={e => (e.currentTarget.style.color = COLOR_NAV_HOVER)}
+                                    onMouseLeave={e => (e.currentTarget.style.color = COLOR_NAV_LINK)}
                                 >
                                     {link.label}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                     </ul>
@@ -116,24 +124,32 @@ export default function Header() {
                     <ul style={{ display: "flex", gap: "7rem", listStyle: "none", margin: 0, padding: 0 }}>
                         {navLinksRight.map((link) => (
                             <li key={link.to}>
-                                <Link
-                                    to={link.to}
+                                <a
+                                    href={`#${link.to}`}
                                     style={{
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontWeight: 600,
                                         fontSize: "1rem",
+                                        cursor: "pointer",
                                     }}
-                                    onMouseEnter={(e) => (e.currentTarget.style.color = COLOR_NAV_HOVER)}
-                                    onMouseLeave={(e) => (e.currentTarget.style.color = COLOR_NAV_LINK)}
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        const section = document.getElementById(link.to);
+                                        if (section) {
+                                            section.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    onMouseEnter={e => (e.currentTarget.style.color = COLOR_NAV_HOVER)}
+                                    onMouseLeave={e => (e.currentTarget.style.color = COLOR_NAV_LINK)}
                                 >
                                     {link.label}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                         <li>
-                            <Link
-                                to="/contacto"
+                            <a
+                                href="#contact"
                                 style={{
                                     background: BUTTON_BG,
                                     color: BUTTON_TEXT,
@@ -143,12 +159,20 @@ export default function Header() {
                                     padding: "0.5rem 1.25rem",
                                     textDecoration: "none",
                                     transition: "background 0.2s ease",
+                                    cursor: "pointer",
                                 }}
-                                onMouseEnter={(e) => (e.currentTarget.style.background = BUTTON_BG_HOVER)}
-                                onMouseLeave={(e) => (e.currentTarget.style.background = BUTTON_BG)}
+                                onClick={e => {
+                                    e.preventDefault();
+                                    const section = document.getElementById('contact');
+                                    if (section) {
+                                        section.scrollIntoView({ behavior: 'smooth' });
+                                    }
+                                }}
+                                onMouseEnter={e => (e.currentTarget.style.background = BUTTON_BG_HOVER)}
+                                onMouseLeave={e => (e.currentTarget.style.background = BUTTON_BG)}
                             >
                                 Contact Us
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 )}
@@ -190,23 +214,31 @@ export default function Header() {
                     <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
                         {[...navLinksLeft, ...navLinksRight].map((link) => (
                             <li key={link.to}>
-                                <Link
-                                    to={link.to}
+                                <a
+                                    href={`#${link.to}`}
                                     style={{
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontSize: "1.2rem",
                                         fontWeight: 600,
+                                        cursor: "pointer",
                                     }}
-                                    onClick={() => setIsMenuOpen(false)}
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        setIsMenuOpen(false);
+                                        const section = document.getElementById(link.to);
+                                        if (section) {
+                                            section.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
                                 >
                                     {link.label}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                         <li>
-                            <Link
-                                to="/contacto"
+                            <a
+                                href="#contact"
                                 style={{
                                     background: BUTTON_BG,
                                     color: BUTTON_TEXT,
@@ -217,10 +249,19 @@ export default function Header() {
                                     textDecoration: "none",
                                     display: "inline-block",
                                     marginTop: "0.5rem",
+                                    cursor: "pointer",
+                                }}
+                                onClick={e => {
+                                    e.preventDefault();
+                                    setIsMenuOpen(false);
+                                    const section = document.getElementById('contact');
+                                    if (section) {
+                                        section.scrollIntoView({ behavior: 'smooth' });
+                                    }
                                 }}
                             >
                                 Contact Us
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 </motion.div>

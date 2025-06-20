@@ -60,7 +60,28 @@ const Navbar = () => {
             }}
         >
             {NAV_ITEMS.map((item) =>
-                item.isButton ? (
+                item.label === "Home" ? (
+                    <a
+                        key={item.to}
+                        href="#"
+                        style={{
+                            color: "#ffffff",
+                            textDecoration: "none",
+                            fontWeight: 700,
+                            fontSize: "1rem",
+                            transition: "color 0.3s ease",
+                            cursor: "pointer",
+                        }}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#1F2E36")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
+                    >
+                        {item.label}
+                    </a>
+                ) : item.isButton ? (
                     <Link
                         key={item.to}
                         to={item.to}
@@ -95,7 +116,6 @@ const Navbar = () => {
                             transition: "color 0.3s ease",
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.color = "#1F2E36")}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
                     >
                         {item.label}
                     </Link>
