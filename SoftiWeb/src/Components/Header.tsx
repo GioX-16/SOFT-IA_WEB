@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import logo from "../assets/Logos/Logo SOFT.png";
 
 // 🎨 Variables editables
@@ -30,6 +31,25 @@ const navLinksRight = [
 ];
 
 export default function Header() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
         <motion.header
             initial={{ opacity: 0, y: -40 }}
@@ -60,8 +80,30 @@ export default function Header() {
                     padding: "0 2rem",
                 }}
             >
+                {/* Menú de hamburguesa para móvil */}
+                <div
+                    style={{
+                        display: isMobile ? "flex" : "none",
+                        cursor: "pointer",
+                        flexDirection: "column",
+                        gap: "5px",
+                        padding: "10px",
+                    }}
+                    onClick={toggleMenu}
+                >
+                    <div style={{ width: "25px", height: "3px", background: COLOR_NAV_LINK }}></div>
+                    <div style={{ width: "25px", height: "3px", background: COLOR_NAV_LINK }}></div>
+                    <div style={{ width: "25px", height: "3px", background: COLOR_NAV_LINK }}></div>
+                </div>
+
                 {/* Nav izquierda */}
-                <nav>
+                <nav
+                    style={{
+                        display: isMobile && !isMenuOpen ? "none" : "flex",
+                        flex: 1,
+                        justifyContent: "flex-start",
+                    }}
+                >
                     <ul
                         style={{
                             display: "flex",
@@ -107,7 +149,13 @@ export default function Header() {
                 </div>
 
                 {/* Nav derecha + botón */}
-                <nav>
+                <nav
+                    style={{
+                        display: isMobile && !isMenuOpen ? "none" : "flex",
+                        flex: 1,
+                        justifyContent: "flex-end",
+                    }}
+                >
                     <ul
                         style={{
                             display: "flex",
