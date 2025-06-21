@@ -136,14 +136,13 @@ const TeamSection: React.FC = () => {
                             src={member.imageHover}
                             alt={`${member.name} Hover`}
                             style={{
-                                width: "100%",
+                                width: 'calc(100% - 2rem)',
                                 height: "240px",
                                 objectFit: "cover",
                                 borderRadius: "15px",
                                 position: "absolute",
                                 top: "1rem",
                                 left: "1rem",
-                                right: "1rem",
                                 transition: "all 0.5s ease-in-out",
                                 opacity: 0,
                             }}
