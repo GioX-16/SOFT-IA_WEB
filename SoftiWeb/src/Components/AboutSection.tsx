@@ -134,7 +134,7 @@ const AboutUs: React.FC = () => {
                             transition: "background 0.3s",
                         }}
                         onMouseEnter={(e) =>
-                            (e.currentTarget.style.background = "#1F2E36")
+                            (e.currentTarget.style.background = "#4498C2")
                         }
                         onMouseLeave={(e) =>
                             (e.currentTarget.style.background = "transparent")
