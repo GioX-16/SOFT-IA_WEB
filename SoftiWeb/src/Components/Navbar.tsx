@@ -44,7 +44,7 @@ const Navbar = () => {
             transition={{ duration: 0.5 }}
             style={{
                 position: "fixed",
-                top: "2rem",
+                top: "1rem",
                 left: "30%",
                 transform: "translateX(-50%)",
                 zIndex: 999,
