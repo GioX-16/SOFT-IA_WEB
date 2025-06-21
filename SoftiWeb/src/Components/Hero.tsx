@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
             style={{
                 position: "relative",
                 width: "100vw",
-                minHeight: "100vh",
+                minHeight: "90vh",
                 overflow: "hidden",
                 fontFamily: FONT_FAMILY,
                 display: "flex",

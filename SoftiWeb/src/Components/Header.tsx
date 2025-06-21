@@ -62,7 +62,8 @@ export default function Header() {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    padding: "0 2rem",
+                    padding: "0 0.4rem",
+                    position: "relative",
                 }}
             >
                 {/* Logo a la izquierda solo en móvil */}
@@ -81,7 +82,7 @@ export default function Header() {
 
                 {/* Nav izquierda - solo desktop */}
                 {!isMobile && (
-                    <ul style={{ display: "flex", gap: "7rem", listStyle: "none", margin: 0, padding: 0 }}>
+                    <ul style={{ display: "flex", gap: "5rem", listStyle: "none", margin: 0, padding: 0 }}>
                         {navLinksLeft.map((link) => (
                             <li key={link.to}>
                                 <a
@@ -90,7 +91,7 @@ export default function Header() {
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontWeight: 600,
-                                        fontSize: "1rem",
+                                        fontSize: "0.8rem",
                                         cursor: "pointer",
                                     }}
                                     onClick={e => {
@@ -112,18 +113,24 @@ export default function Header() {
 
                 {/* Logo al centro solo en desktop */}
                 {!isMobile && (
-                    <div style={{ flexShrink: 0 }}>
+                    <div style={{ 
+                        position: "absolute", 
+                        left: "50%", 
+                        top: "50%", 
+                        transform: "translate(-50%, -50%)",
+                        flexShrink: 0 
+                    }}>
                         <img
                             src={logo}
                             alt="Logo SOFT-IA"
-                            style={{ width: "180px", objectFit: "contain" }}
+                            style={{ width: "200px", objectFit: "contain" }}
                         />
                     </div>
                 )}
 
                 {/* Nav derecha - solo desktop */}
                 {!isMobile && (
-                    <ul style={{ display: "flex", gap: "7rem", listStyle: "none", margin: 0, padding: 0 }}>
+                    <ul style={{ display: "flex", gap: "5rem", listStyle: "none", margin: 0, padding: 0 }}>
                         {navLinksRight.map((link) => (
                             <li key={link.to}>
                                 <a
@@ -132,7 +139,7 @@ export default function Header() {
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontWeight: 600,
-                                        fontSize: "1rem",
+                                        fontSize: "0.8rem",
                                         cursor: "pointer",
                                     }}
                                     onClick={e => {
