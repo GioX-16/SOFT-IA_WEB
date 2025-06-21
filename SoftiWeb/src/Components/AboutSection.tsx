@@ -5,11 +5,12 @@ import aboutImage from "../assets/img/Presentacion Landing.png";
 import Header from "./Header";
 
 const tags = [
-    "Developers",
-    "Soft. Architect",
-    "ux/ui Designer",
-    "Consulting",
-    "Analist",
+    "Desarrolladores",
+    "Arquitecto Web3",
+    "Diseñadores UX/UI",
+    "Consultas",
+    "Analistas",
+    "Control de Calidad",
 ];
 
 const AboutUs: React.FC = () => {
@@ -28,7 +29,7 @@ const AboutUs: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "4rem 2rem",
-                background: "linear-gradient(to right, #1A1B1C, #4498C2)",
+                background: "linear-gradient(to right, #1F2E36, #1F2E36)",
                 fontFamily: "'Play', sans-serif",
                 color: "#fff",
             }}
@@ -108,9 +109,9 @@ const AboutUs: React.FC = () => {
             {/* 🔖 Tags */}
             <div
                 style={{
-                    marginTop: "7rem",
+                    marginTop: "3rem",
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(5, auto)",
+                    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(6, auto)",
                     gap: "2rem",
                     justifyContent: "center",
                 }}
@@ -124,16 +125,16 @@ const AboutUs: React.FC = () => {
                         viewport={{ once: true }}
                         style={{
                             padding: "0.7rem 1rem",
-                            border: "2px solid #ffffff66",
+                            border: "2px solid #ffffff",
                             borderRadius: "18px",
                             textAlign: "center",
                             fontWeight: 600,
                             cursor: "pointer",
-                            color: "#fff",
+                            color: "#E9ECF0",
                             transition: "background 0.3s",
                         }}
                         onMouseEnter={(e) =>
-                            (e.currentTarget.style.background = "#4498C2")
+                            (e.currentTarget.style.background = "#1F2E36")
                         }
                         onMouseLeave={(e) =>
                             (e.currentTarget.style.background = "transparent")
