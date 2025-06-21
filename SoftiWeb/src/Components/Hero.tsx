@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
             style={{
                 position: "relative",
                 width: "100vw",
-                minHeight: "90vh",
+                minHeight: "100vh",
                 overflow: "hidden",
                 fontFamily: FONT_FAMILY,
                 display: "flex",
@@ -196,7 +196,7 @@ const Hero: React.FC = () => {
                         src={logo}
                         alt="SOFT - IA Logo"
                         style={{
-                            width: "clamp(150px, 30vw, 300px)",
+                            width: "clamp(200px, 30vw, 300px)",
                             objectFit: "contain",
                         }}
                     />
@@ -204,9 +204,9 @@ const Hero: React.FC = () => {
                     <h1
                         style={{
                             color: TEXT_COLOR,
-                            fontSize: "clamp(1.5rem, 4vw, 2.8rem)",
+                            fontSize: "clamp(1.5rem, 3vw, 2.8rem)",
                             fontWeight: "bold",
-                            lineHeight: 1.2,
+                            lineHeight: 1,
                         }}
                     >
                         Agencia De{" "}
@@ -218,7 +218,7 @@ const Hero: React.FC = () => {
                     <p
                         style={{
                             color: TEXT_COLOR,
-                            fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+                            fontSize: "clamp(1rem, 2vw, 1.3rem)",
                             lineHeight: 1.5,
                         }}
                     >

@@ -91,7 +91,7 @@ export default function Header() {
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontWeight: 600,
-                                        fontSize: "0.8rem",
+                                        fontSize: "1rem",
                                         cursor: "pointer",
                                     }}
                                     onClick={e => {
@@ -139,7 +139,7 @@ export default function Header() {
                                         color: COLOR_NAV_LINK,
                                         textDecoration: "none",
                                         fontWeight: 600,
-                                        fontSize: "0.8rem",
+                                        fontSize: "1rem",
                                         cursor: "pointer",
                                     }}
                                     onClick={e => {

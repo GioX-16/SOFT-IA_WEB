@@ -29,7 +29,7 @@ const AboutUs: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "4rem 2rem",
-                background: "linear-gradient(to right, #1F2E36, #1F2E36)",
+                background: "linear-gradient(to right,  #1A1B1C, #4498C2)",
                 fontFamily: "'Play', sans-serif",
                 color: "#fff",
             }}
