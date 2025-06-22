@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
 import { FaInstagram, FaTiktok, FaLinkedin } from "react-icons/fa";
 
 const teamMembers = [
@@ -54,11 +54,48 @@ const teamMembers = [
 ];
 
 const TeamSection: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
+    const cardVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.5,
+            },
+        },
+    };
+
     return (
         <section
+            id="team"
+            ref={ref}
             style={{
-                padding: "5rem 2rem",
-                background: "linear-gradient(to right, #1A1B1C, #4498C2)", // 🎨 Gradiente editable
+                padding: isMobile ? "4rem 1rem" : "5rem 2rem",
+                background: "linear-gradient(to right, #1A1B1C, #4498C2)",
                 position: "relative",
                 fontFamily: "'Play', sans-serif",
                 overflow: "hidden",
@@ -73,8 +110,8 @@ const TeamSection: React.FC = () => {
                     top: "10%",
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "80%",
-                    opacity: 0.1, // 👁 Opacidad editable
+                    width: isMobile ? "95%" : "80%",
+                    opacity: 0.1,
                     zIndex: 0,
                 }}
             />
@@ -82,7 +119,7 @@ const TeamSection: React.FC = () => {
             <h2
                 style={{
                     textAlign: "center",
-                    fontSize: "2.2rem",
+                    fontSize: isMobile ? "2rem" : "1.5rem",
                     color: "#FFFFFF",
                     fontWeight: "bold",
                     marginBottom: "1rem",
@@ -94,7 +131,10 @@ const TeamSection: React.FC = () => {
             </h2>
 
             {/* 🧑‍🤝‍🧑 Cards del equipo */}
-            <div
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(250px, 300px))",
@@ -108,6 +148,7 @@ const TeamSection: React.FC = () => {
                 {teamMembers.map((member, index) => (
                     <motion.div
                         key={index}
+                        variants={cardVariants}
                         whileHover={{ scale: 1.05 }}
                         style={{
                             background: "rgba(255, 255, 255, 0.1)",
@@ -149,7 +190,7 @@ const TeamSection: React.FC = () => {
                             whileHover={{ opacity: 1 }}
                         />
                         <h3 style={{ color: "#fff", marginTop: "1rem" }}>{member.name}</h3>
-                        <p style={{ color: "#cbd5e1", fontSize: "0.9rem" }}>{member.title}</p>
+                        <h2 style={{ color: "#1F2E36", fontSize: "0.9rem" }}>{member.title}</h2>
                         <a
                             href={member.cvLink}
                             target="_blank"
@@ -183,7 +224,7 @@ const TeamSection: React.FC = () => {
                         </div>
                     </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };
