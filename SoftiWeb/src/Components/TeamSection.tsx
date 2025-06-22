@@ -18,7 +18,7 @@ const teamMembers = [
     {
         name: "GEOVANNY SANDINO",
         title: "Ingeniero de Sistemas",
-        cvLink: "https://drive.google.com/your-link-geovanny",
+        cvLink: "https://drive.google.com/file/d/1Y2UJLk_8FMRIypF-gtLFCDbVqXgA6pda/view?usp=sharing",
         imageDefault: "/src/assets/img/Cards/TeamCards/CardG1.png",
         imageHover: "/src/assets/img/Cards/TeamCards/CardG2.png",
         socials: {
