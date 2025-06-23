@@ -29,7 +29,7 @@ const AboutUs: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "4rem 2rem",
-                background: "linear-gradient(to right,  #1A1B1C, #4498C2)",
+                background: "linear-gradient(to right, #031527, #020507)",
                 fontFamily: "'Play', sans-serif",
                 color: "#fff",
             }}
@@ -125,7 +125,7 @@ const AboutUs: React.FC = () => {
                         viewport={{ once: true }}
                         style={{
                             padding: "0.7rem 1rem",
-                            border: "2px solid #ffffff",
+                            border: "1px solid #E9ECF0",
                             borderRadius: "18px",
                             textAlign: "center",
                             fontWeight: 600,
@@ -134,10 +134,10 @@ const AboutUs: React.FC = () => {
                             transition: "background 0.3s",
                         }}
                         onMouseEnter={(e) =>
-                            (e.currentTarget.style.background = "#4498C2")
+                            (e.currentTarget.style.background = "#4593C9")
                         }
                         onMouseLeave={(e) =>
-                            (e.currentTarget.style.background = "transparent")
+                            (e.currentTarget.style.background = "Transparent")
                         }
                     >
                         {tag}

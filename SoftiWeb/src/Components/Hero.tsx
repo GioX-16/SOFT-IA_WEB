@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 background: isMobile
-                    ? "linear-gradient(to right, #1A1B1C, #4498C2)"
+                    ? "linear-gradient(to right, #031527, #020507)"
                     : undefined,
             }}
         >

@@ -95,7 +95,7 @@ const TeamSection: React.FC = () => {
             ref={ref}
             style={{
                 padding: isMobile ? "4rem 1rem" : "5rem 2rem",
-                background: "linear-gradient(to right, #1A1B1C, #4498C2)",
+                background: "linear-gradient(to right, #031527, #020507)",
                 position: "relative",
                 fontFamily: "'Play', sans-serif",
                 overflow: "hidden",
@@ -111,7 +111,7 @@ const TeamSection: React.FC = () => {
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: isMobile ? "95%" : "80%",
-                    opacity: 0.1,
+                    opacity: 10,
                     zIndex: 0,
                 }}
             />
@@ -190,7 +190,7 @@ const TeamSection: React.FC = () => {
                             whileHover={{ opacity: 1 }}
                         />
                         <h3 style={{ color: "#fff", marginTop: "1rem" }}>{member.name}</h3>
-                        <h2 style={{ color: "#1F2E36", fontSize: "0.9rem" }}>{member.title}</h2>
+                        <h2 style={{ color: "#4593C9", fontSize: "1.1rem" }}>{member.title}</h2>
                         <a
                             href={member.cvLink}
                             target="_blank"
