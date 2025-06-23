@@ -52,7 +52,7 @@ const Navbar = () => {
                 borderRadius: "2rem",
                 display: "flex",
                 gap: "2.5rem",
-                background: "linear-gradient(to left, #4498C2 0%, #C3D4DD 100%)",
+                background: "linear-gradient(to left, #4498C2 0%, #336178 100%)",
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                 alignItems: "center",
                 justifyContent: "center",
@@ -103,7 +103,7 @@ const Navbar = () => {
                             }
                         }}
                         onMouseEnter={e => {
-                            e.currentTarget.style.backgroundColor = "#38BDF8";
+                            e.currentTarget.style.backgroundColor = "#E9ECF0";
                             e.currentTarget.style.color = "#1F2E36";
                         }}
                         onMouseLeave={e => {
