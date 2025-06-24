@@ -11,7 +11,109 @@ interface TestimonialCardProps {
     brandImg: string; // imagen de la marca (obligatoria)
 }
 
-// Estilos en línea para la sección y las cards
+// Importa las imágenes de los móviles usando import.meta.url (Vite)
+const phone1 = new URL("../assets/img/Testimonials/Mobil1.png", import.meta.url).href;
+const phone2 = new URL("../assets/img/Testimonials/Mobil2.png", import.meta.url).href;
+
+// Importa los avatares/logos de las cards usando import.meta.url (Vite)
+const cardG1 = new URL("../assets/img/Testimonials/Juan.png", import.meta.url).href;
+const cardK1 = new URL("../assets/img/Testimonials/yo.jpg", import.meta.url).href;
+const cardA1 = new URL("../assets/img/Testimonials/Camilo.jpeg", import.meta.url).href;
+const cardW1 = new URL("../assets/img/Testimonials/wil.jpg", import.meta.url).href;
+
+// Ejemplo de logos de marcas (puedes cambiarlos por los que quieras)
+const logoGnomo = new URL("../assets/img/Testimonials/bg_logs/BG_LOG.png", import.meta.url).href;
+const logoSoftia = new URL("../assets/img/Testimonials/bg_logs/BG_LOG1.png", import.meta.url).href;
+const logoGroveto = new URL("../assets/img/Testimonials/bg_logs/BG_LOG2.png", import.meta.url).href;
+const logoGioxus = new URL("../assets/img/Testimonials/bg_logs/BG_LOG3.png", import.meta.url).href;
+
+// Componente reutilizable para cada testimonial
+function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, brandImg }: TestimonialCardProps) {
+    const [hover, setHover] = React.useState(false);
+    return (
+        <div
+            style={{ ...styles.card, ...(hover ? styles.cardHover : {}) }}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+        >
+            <div style={styles.header}>
+                <img style={styles.avatar} src={logo} alt={empresa} />
+                <div>
+                    <h3 style={{ margin: 0 }}>{nombre}</h3>
+                    <p style={styles.role}>{cargo}</p>
+                </div>
+            </div>
+            <p style={styles.text}>{testimonio}</p>
+            <div style={styles.footer}>
+                <div style={styles.stars}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                        <span key={i} style={{ color: i < estrellas ? "#8B2CF5" : "#222" }}>★</span>
+                    ))}
+                </div>
+                {/* Imagen de la marca SIEMPRE */}
+                <img src={brandImg} alt={empresa + ' logo'} style={styles.brandImg} />
+            </div>
+        </div>
+    );
+}
+
+export default function Testimonials() {
+    return (
+        <section id="testimonials" style={styles.section}>
+            {/* Fuente Play de Google Fonts */}
+            <link href="https://fonts.googleapis.com/css2?family=Play:wght@700;900&display=swap" rel="stylesheet" />
+            <h2 style={styles.title}>TESTIMONIALS</h2>
+            <div style={styles.content}>
+                {/* Móviles flotando a la izquierda */}
+                <div style={styles.phones}>
+                    <img src={phone1} alt="Movil 1" style={styles.phoneImg1} />
+                    <img src={phone2} alt="Movil 2" style={styles.phoneImg2} />
+                </div>
+                {/* Cards de testimonios */}
+                <div style={styles.cards}>
+                    <TestimonialCard
+                        nombre="Juan Tijerino"
+                        cargo="Senior UX/UI Designer"
+                        testimonio="¡Increíble experiencia! El equipo fue súper profesional y siempre estuvo dispuesto a escuchar mis ideas. Supieron traducir mi visión en un producto funcional y visualmente hermoso."
+                        estrellas={5}
+                        logo={cardG1}
+                        empresa="Gnomo"
+                        brandImg={logoGnomo}
+                    />
+                    <TestimonialCard
+                        nombre="Daniel Gomez"
+                        cargo="Ingeniero de sistemas"
+                        testimonio="Trabajar con Soft-IA Team fue una de las mejores decisiones que tomé para mi proyecto. Los diseñadores tienen un gran ojo para los detalles y los desarrolladores son realmente talentosos."
+                        estrellas={5}
+                        logo={cardK1}
+                        empresa="SOFT - IA"
+                        brandImg={logoSoftia}
+                    />
+                    <TestimonialCard
+                        nombre="Camilo Fanjul"
+                        cargo="Co-Founder  GROVETO"
+                        testimonio="¡Excelente equipo! Desde el primer encuentro, me dieron mucha confianza. Fueron organizados, creativos y siempre me mantuvieron informado del avance."
+                        estrellas={5}
+                        logo={cardA1}
+                        empresa="groveto"
+                        brandImg={logoGroveto}
+                    />
+                    <TestimonialCard
+                        nombre="Wilhelm Reyes"
+                        cargo="Backend Dev"
+                        testimonio="¡Increíble experiencia! El equipo fue súper profesional y siempre estuvo dispuesto a escuchar mis ideas. Supieron traducir mi visión en un producto funcional y visualmente hermoso."
+                        estrellas={5}
+                        logo={cardW1}
+                        empresa="GIOXUS"
+                        brandImg={logoGioxus}
+                    />
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// --- ESTILOS EN LÍNEA (al final del archivo) ---
 const styles = {
     section: {
         width: '100%',
@@ -154,120 +256,61 @@ const styles = {
         marginRight: '0',
     },
     // Responsive
-    '@media (maxWidth: 900px)': {
-        cards: {
-            gridTemplateColumns: '1fr',
-            maxWidth: '340px',
+    '@media (max-width: 900px)': {
+        section: {
+            padding: '32px 0',
+        },
+        title: {
+            fontSize: '1.3rem',
+            marginBottom: '18px',
         },
         content: {
             flexDirection: 'column' as const,
             alignItems: 'center',
+            gap: '18px',
+            maxWidth: '100vw',
         },
         phones: {
             flexDirection: 'row' as const,
             gap: '10px',
-            marginBottom: '30px',
+            marginBottom: '18px',
+            minWidth: '0',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+        },
+        phoneImg1: {
+            width: '70px',
+            borderRadius: '10px',
+        },
+        phoneImg2: {
+            width: '80px',
+            borderRadius: '10px',
+            marginLeft: '-10px',
+        },
+        cards: {
+            gridTemplateColumns: '1fr',
+            gridTemplateRows: 'unset',
+            maxWidth: '98vw',
+            gap: '24px',
+        },
+        card: {
+            minWidth: '0',
+            maxWidth: '98vw',
+            width: '98vw',
+            padding: '12px 8px',
+            minHeight: '120px',
+            maxHeight: 'none',
+        },
+        avatar: {
+            width: '28px',
+            height: '28px',
+        },
+        brandImg: {
+            width: '38px',
+            height: '18px',
+        },
+        stars: {
+            fontSize: '0.9rem',
         },
     },
 };
-
-// Importa las imágenes de los móviles usando import.meta.url (Vite)
-const phone1 = new URL("../assets/img/Testimonials/Mobil1.png", import.meta.url).href;
-const phone2 = new URL("../assets/img/Testimonials/Mobil2.png", import.meta.url).href;
-
-// Importa los avatares/logos de las cards usando import.meta.url (Vite)
-const cardG1 = new URL("../assets/img/Testimonials/Juan.png", import.meta.url).href;
-const cardK1 = new URL("../assets/img/Testimonials/yo.jpg", import.meta.url).href;
-const cardA1 = new URL("../assets/img/Testimonials/Camilo.jpeg", import.meta.url).href;
-const cardW1 = new URL("../assets/img/Testimonials/wil.jpg", import.meta.url).href;
-
-// Ejemplo de logos de marcas (puedes cambiarlos por los que quieras)
-const logoGnomo = new URL("../assets/img/Testimonials/bg_logs/BG_LOG.png", import.meta.url).href;
-const logoSoftia = new URL("../assets/img/Testimonials/bg_logs/BG_LOG1.png", import.meta.url).href;
-const logoGroveto = new URL("../assets/img/Testimonials/bg_logs/BG_LOG2.png", import.meta.url).href;
-const logoGioxus = new URL("../assets/img/Testimonials/bg_logs/BG_LOG3.png", import.meta.url).href;
-
-// Componente reutilizable para cada testimonial
-function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, brandImg }: TestimonialCardProps) {
-    const [hover, setHover] = React.useState(false);
-    return (
-        <div
-            style={{ ...styles.card, ...(hover ? styles.cardHover : {}) }}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-        >
-            <div style={styles.header}>
-                <img style={styles.avatar} src={logo} alt={empresa} />
-                <div>
-                    <h3 style={{ margin: 0 }}>{nombre}</h3>
-                    <p style={styles.role}>{cargo}</p>
-                </div>
-            </div>
-            <p style={styles.text}>{testimonio}</p>
-            <div style={styles.footer}>
-                <div style={styles.stars}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                        <span key={i} style={{ color: i < estrellas ? "#8B2CF5" : "#222" }}>★</span>
-                    ))}
-                </div>
-                {/* Imagen de la marca SIEMPRE */}
-                <img src={brandImg} alt={empresa + ' logo'} style={styles.brandImg} />
-            </div>
-        </div>
-    );
-}
-
-export default function Testimonials() {
-    return (
-        <section id="testimonials" style={styles.section}>
-            <link href="https://fonts.googleapis.com/css2?family=Play:wght@700;900&display=swap" rel="stylesheet" />
-            <h2 style={styles.title}>TESTIMONIALS</h2>
-            <div style={styles.content}>
-                {/* Móviles flotando a la izquierda */}
-                <div style={styles.phones}>
-                    <img src={phone1} alt="Movil 1" style={styles.phoneImg1} />
-                    <img src={phone2} alt="Movil 2" style={styles.phoneImg2} />
-                </div>
-                {/* Cards de testimonios */}
-                <div style={styles.cards}>
-                    <TestimonialCard
-                        nombre="Juan Tijerino"
-                        cargo="Senior UX/UI Designer"
-                        testimonio="¡Increíble experiencia! El equipo fue súper profesional y siempre estuvo dispuesto a escuchar mis ideas. Supieron traducir mi visión en un producto funcional y visualmente hermoso."
-                        estrellas={5}
-                        logo={cardG1}
-                        empresa="Gnomo"
-                        brandImg={logoGnomo}
-                    />
-                    <TestimonialCard
-                        nombre="Daniel Gomez"
-                        cargo="Ingeniero de sistemas"
-                        testimonio="Trabajar con Soft-IA Team fue una de las mejores decisiones que tomé para mi proyecto. Los diseñadores tienen un gran ojo para los detalles y los desarrolladores son realmente talentosos."
-                        estrellas={5}
-                        logo={cardK1}
-                        empresa="SOFT - IA"
-                        brandImg={logoSoftia}
-                    />
-                    <TestimonialCard
-                        nombre="Camilo Fanjul"
-                        cargo="Co-Founder  GROVETO"
-                        testimonio="¡Excelente equipo! Desde el primer encuentro, me dieron mucha confianza. Fueron organizados, creativos y siempre me mantuvieron informado del avance."
-                        estrellas={5}
-                        logo={cardA1}
-                        empresa="groveto"
-                        brandImg={logoGroveto}
-                    />
-                    <TestimonialCard
-                        nombre="Wilhelm Reyes"
-                        cargo="Backend Dev"
-                        testimonio="¡Increíble experiencia! El equipo fue súper profesional y siempre estuvo dispuesto a escuchar mis ideas. Supieron traducir mi visión en un producto funcional y visualmente hermoso."
-                        estrellas={5}
-                        logo={cardW1}
-                        empresa="GIOXUS"
-                        brandImg={logoGioxus}
-                    />
-                </div>
-            </div>
-        </section>
-    );
-}
