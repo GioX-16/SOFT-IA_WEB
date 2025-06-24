@@ -4,7 +4,7 @@ import logo from "../assets/Logos/Logo SOFT.png";
 import React, { useEffect, useState } from "react";
 
 // 🎥 Configuración
-const VIDEO_BG = true;
+const VIDEO_BG = false;
 const VIDEO_SRC = "/src/assets/Videos/Background_Final.mp4";
 const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg";
 
