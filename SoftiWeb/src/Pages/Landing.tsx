@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import AboutUs from "../Components/AboutSection";
 import Header from "../Components/Header";
 import TeamSection from "../Components/TeamSection";
+import Testimonials from "../Components/Testimonials";
 import { useEffect, useState } from "react";
 
 export default function Landing() {
@@ -34,6 +35,7 @@ export default function Landing() {
             <Hero />
             <AboutUs />
             <TeamSection />
+            <Testimonials />
         </>
     );
 }
