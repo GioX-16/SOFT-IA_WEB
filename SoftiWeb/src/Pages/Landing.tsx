@@ -4,6 +4,9 @@ import AboutUs from "../Components/AboutSection";
 import Header from "../Components/Header";
 import TeamSection from "../Components/TeamSection";
 import Testimonials from "../Components/Testimonials";
+import PortfolioSection from "../Components/PortfolioSection";
+import ServicesSection from "../Components/ServicesSection";
+import ContactSection from "../Components/ContactSection";
 import { useEffect, useState } from "react";
 
 export default function Landing() {
@@ -34,8 +37,11 @@ export default function Landing() {
             {showNavbar && <Navbar />}
             <Hero />
             <AboutUs />
+            <PortfolioSection />
+            <ServicesSection />
             <TeamSection />
             <Testimonials />
+            <ContactSection />
         </>
     );
 }
