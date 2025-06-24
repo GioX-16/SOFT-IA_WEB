@@ -8,8 +8,7 @@ interface TestimonialCardProps {
     estrellas: number;
     logo: string;
     empresa: string;
-    gradient: string;
-    logoBg: string;
+    brandImg: string; // imagen de la marca (obligatoria)
 }
 
 // Estilos en línea para la sección y las cards
@@ -26,120 +25,143 @@ const styles = {
     },
     title: {
         color: '#fff',
-        fontSize: '2.5rem',
-        fontWeight: 700,
+        fontSize: '2.2rem',
+        fontWeight: 900,
         letterSpacing: '2px',
-        marginBottom: '40px',
+        marginBottom: '36px',
         textAlign: 'center' as const,
+        textShadow: '0 2px 8px rgba(0,0,0,0.18)',
+        textTransform: 'uppercase' as const,
+        fontFamily: 'Play, sans-serif',
     },
     content: {
         display: 'flex',
         flexDirection: 'row' as const,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        gap: '40px',
+        gap: '32px',
         width: '100%',
-        maxWidth: '1400px',
+        maxWidth: '1200px',
     },
     phones: {
         display: 'flex',
         flexDirection: 'column' as const,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         gap: '20px',
-        minWidth: '220px',
+        minWidth: '180px',
+        marginTop: '0',
     },
     phoneImg1: {
-        width: '140px',
-        transform: 'rotate(-10deg) translateY(30px)',
+        width: '110px',
+        transform: 'rotate(-10deg) translateY(0px)',
         boxShadow: '0 8px 32px 0 rgba(0,0,0,0.4)',
-        borderRadius: '24px',
+        borderRadius: '18px',
         zIndex: 2,
     },
     phoneImg2: {
-        width: '170px',
+        width: '130px',
         transform: 'rotate(7deg) translateY(-30px)',
         boxShadow: '0 8px 32px 0 rgba(0,0,0,0.4)',
-        borderRadius: '24px',
+        borderRadius: '18px',
         zIndex: 1,
-        marginLeft: '-40px',
+        marginLeft: '-30px',
     },
     cards: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: '32px',
-        flex: 1,
+        gridTemplateRows: '1fr 1fr',
+        gap: '64px',
+        width: '100%',
+        maxWidth: '1100px',
+        justifyItems: 'center' as const,
+        alignItems: 'stretch' as const,
     },
     card: {
-        borderRadius: '18px',
-        boxShadow: '0 4px 24px 0 rgba(0,0,0,0.18)',
-        padding: '32px 28px',
-        minWidth: '340px',
-        maxWidth: '480px',
-        transition: 'transform 0.25s, box-shadow 0.25s',
+        background: '#fff',
+        borderRadius: '16px',
+        boxShadow: '0 2px 12px 0 rgba(0,0,0,0.10)',
+        padding: '22px 32px',
+        width: '97%',
+        minWidth: '380px',
+        maxWidth: '600px',
+        minHeight: '140px',
+        maxHeight: '180px',
+        transition: 'transform 0.18s, box-shadow 0.18s',
         cursor: 'pointer',
         color: '#222',
         display: 'flex',
         flexDirection: 'column' as const,
-        gap: '18px',
+        gap: '12px',
+        position: 'relative' as const,
+        border: '1.5px solid #e6e6e6',
+        justifySelf: 'center' as const,
     },
     cardHover: {
-        transform: 'translateY(-8px) scale(1.03)',
-        boxShadow: '0 8px 32px 0 rgba(130, 88, 255, 0.18)',
+        transform: 'translateY(-6px) scale(1.02)',
+        boxShadow: '0 8px 32px 0 rgba(130, 88, 255, 0.13)',
+        border: '1.5px solid #bdbdbd',
     },
     header: {
         display: 'flex',
         alignItems: 'center',
-        gap: '18px',
+        gap: '12px',
     },
     avatar: {
-        width: '56px',
-        height: '56px',
+        width: '38px',
+        height: '38px',
         borderRadius: '50%',
         objectFit: 'cover' as const,
-        border: '3px solid #fff',
-        boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
+        border: '2px solid #fff',
+        boxShadow: '0 1px 4px 0 rgba(0,0,0,0.10)',
     },
     role: {
-        fontSize: '1rem',
+        fontSize: '0.95rem',
         color: '#444',
         fontWeight: 500,
         margin: 0,
     },
     text: {
-        fontSize: '1.08rem',
+        fontSize: '0.98rem',
         color: '#222',
         margin: 0,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: 'vertical' as const,
     },
     footer: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: '10px',
+        marginTop: '8px',
     },
     stars: {
-        fontSize: '1.4rem',
+        fontSize: '1.1rem',
         letterSpacing: '2px',
     },
-    company: {
-        color: '#fff',
-        fontWeight: 700,
-        borderRadius: '16px',
-        padding: '8px 22px',
-        fontSize: '1rem',
-        marginLeft: '12px',
-        minWidth: '90px',
-        textAlign: 'center' as const,
-        boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
+    brandImg: {
+        width: '54px',
+        height: '28px',
+        objectFit: 'contain' as const,
+        background: 'transparent',
+        borderRadius: '7px',
+        boxShadow: '0 1px 4px 0 rgba(0,0,0,0.08)',
+        backgroundColor: '#fff',
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: '0',
     },
     // Responsive
     '@media (maxWidth: 900px)': {
+        cards: {
+            gridTemplateColumns: '1fr',
+            maxWidth: '340px',
+        },
         content: {
             flexDirection: 'column' as const,
             alignItems: 'center',
-        },
-        cards: {
-            gridTemplateColumns: '1fr',
         },
         phones: {
             flexDirection: 'row' as const,
@@ -159,12 +181,18 @@ const cardK1 = new URL("../assets/img/Testimonials/yo.jpg", import.meta.url).hre
 const cardA1 = new URL("../assets/img/Testimonials/Camilo.jpeg", import.meta.url).href;
 const cardW1 = new URL("../assets/img/Testimonials/wil.jpg", import.meta.url).href;
 
+// Ejemplo de logos de marcas (puedes cambiarlos por los que quieras)
+const logoGnomo = new URL("../assets/img/Testimonials/bg_logs/BG_LOG.png", import.meta.url).href;
+const logoSoftia = new URL("../assets/img/Testimonials/bg_logs/BG_LOG1.png", import.meta.url).href;
+const logoGroveto = new URL("../assets/img/Testimonials/bg_logs/BG_LOG2.png", import.meta.url).href;
+const logoGioxus = new URL("../assets/img/Testimonials/bg_logs/BG_LOG3.png", import.meta.url).href;
+
 // Componente reutilizable para cada testimonial
-function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, gradient, logoBg }: TestimonialCardProps) {
+function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, brandImg }: TestimonialCardProps) {
     const [hover, setHover] = React.useState(false);
     return (
         <div
-            style={{ ...styles.card, background: gradient, ...(hover ? styles.cardHover : {}) }}
+            style={{ ...styles.card, ...(hover ? styles.cardHover : {}) }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
@@ -182,7 +210,8 @@ function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, 
                         <span key={i} style={{ color: i < estrellas ? "#8B2CF5" : "#222" }}>★</span>
                     ))}
                 </div>
-                <div style={{ ...styles.company, background: logoBg }}>{empresa}</div>
+                {/* Imagen de la marca SIEMPRE */}
+                <img src={brandImg} alt={empresa + ' logo'} style={styles.brandImg} />
             </div>
         </div>
     );
@@ -191,6 +220,7 @@ function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, 
 export default function Testimonials() {
     return (
         <section id="testimonials" style={styles.section}>
+            <link href="https://fonts.googleapis.com/css2?family=Play:wght@700;900&display=swap" rel="stylesheet" />
             <h2 style={styles.title}>TESTIMONIALS</h2>
             <div style={styles.content}>
                 {/* Móviles flotando a la izquierda */}
@@ -207,18 +237,16 @@ export default function Testimonials() {
                         estrellas={5}
                         logo={cardG1}
                         empresa="Gnomo"
-                        gradient="linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%)" // Cambia aquí el gradiente
-                        logoBg="#A259FF" // Cambia aquí el color de fondo del logo
+                        brandImg={logoGnomo}
                     />
                     <TestimonialCard
                         nombre="Daniel Gomez"
                         cargo="Ingeniero de sistemas"
                         testimonio="Trabajar con Soft-IA Team fue una de las mejores decisiones que tomé para mi proyecto. Los diseñadores tienen un gran ojo para los detalles y los desarrolladores son realmente talentosos."
-                        estrellas={4}
+                        estrellas={5}
                         logo={cardK1}
                         empresa="SOFT - IA"
-                        gradient="linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%)"
-                        logoBg="#22223B"
+                        brandImg={logoSoftia}
                     />
                     <TestimonialCard
                         nombre="Camilo Fanjul"
@@ -227,8 +255,7 @@ export default function Testimonials() {
                         estrellas={5}
                         logo={cardA1}
                         empresa="groveto"
-                        gradient="linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%)"
-                        logoBg="#6C63FF"
+                        brandImg={logoGroveto}
                     />
                     <TestimonialCard
                         nombre="Wilhelm Reyes"
@@ -237,15 +264,10 @@ export default function Testimonials() {
                         estrellas={5}
                         logo={cardW1}
                         empresa="GIOXUS"
-                        gradient="linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%)"
-                        logoBg="#FF4F9A"
+                        brandImg={logoGioxus}
                     />
                 </div>
             </div>
-            {/*
-                Personaliza los gradientes y colores en los props de cada TestimonialCard.
-                Modifica los estilos en Testimonials.css para el hover y disposición.
-            */}
         </section>
     );
 }
