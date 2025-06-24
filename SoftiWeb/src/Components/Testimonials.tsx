@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 // Tipado de props para TestimonialCard
 interface TestimonialCardProps {
@@ -9,6 +10,7 @@ interface TestimonialCardProps {
     logo: string;
     empresa: string;
     brandImg: string; // imagen de la marca (obligatoria)
+    index?: number; // para animación escalonada
 }
 
 // Importa las imágenes de los móviles usando import.meta.url (Vite)
@@ -28,13 +30,16 @@ const logoGroveto = new URL("../assets/img/Testimonials/bg_logs/BG_LOG2.png", im
 const logoGioxus = new URL("../assets/img/Testimonials/bg_logs/BG_LOG3.png", import.meta.url).href;
 
 // Componente reutilizable para cada testimonial
-function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, brandImg }: TestimonialCardProps) {
+function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, brandImg, index = 0 }: TestimonialCardProps) {
     const [hover, setHover] = React.useState(false);
     return (
-        <div
+        <motion.div
             style={{ ...styles.card, ...(hover ? styles.cardHover : {}) }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 + index * 0.15, type: 'spring', stiffness: 60 }}
         >
             <div style={styles.header}>
                 <img style={styles.avatar} src={logo} alt={empresa} />
@@ -53,7 +58,7 @@ function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, 
                 {/* Imagen de la marca SIEMPRE */}
                 <img src={brandImg} alt={empresa + ' logo'} style={styles.brandImg} />
             </div>
-        </div>
+        </motion.div>
     );
 }
 
@@ -64,12 +69,26 @@ export default function Testimonials() {
             <link href="https://fonts.googleapis.com/css2?family=Play:wght@700;900&display=swap" rel="stylesheet" />
             <h2 style={styles.title}>TESTIMONIALS</h2>
             <div style={styles.content}>
-                {/* Móviles flotando a la izquierda */}
+                {/* Móviles flotando a la izquierda con animación */}
                 <div style={styles.phones}>
-                    <img src={phone1} alt="Movil 1" style={styles.phoneImg1} />
-                    <img src={phone2} alt="Movil 2" style={styles.phoneImg2} />
+                    <motion.img
+                        src={phone1}
+                        alt="Movil 1"
+                        style={styles.phoneImg1}
+                        initial={{ opacity: 0, x: -60 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.1, type: 'spring', stiffness: 60 }}
+                    />
+                    <motion.img
+                        src={phone2}
+                        alt="Movil 2"
+                        style={styles.phoneImg2}
+                        initial={{ opacity: 0, x: -60 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.25, type: 'spring', stiffness: 60 }}
+                    />
                 </div>
-                {/* Cards de testimonios */}
+                {/* Cards de testimonios con animación escalonada */}
                 <div style={styles.cards}>
                     <TestimonialCard
                         nombre="Juan Tijerino"
@@ -79,6 +98,7 @@ export default function Testimonials() {
                         logo={cardG1}
                         empresa="Gnomo"
                         brandImg={logoGnomo}
+                        index={0}
                     />
                     <TestimonialCard
                         nombre="Daniel Gomez"
@@ -88,6 +108,7 @@ export default function Testimonials() {
                         logo={cardK1}
                         empresa="SOFT - IA"
                         brandImg={logoSoftia}
+                        index={1}
                     />
                     <TestimonialCard
                         nombre="Camilo Fanjul"
@@ -97,6 +118,7 @@ export default function Testimonials() {
                         logo={cardA1}
                         empresa="groveto"
                         brandImg={logoGroveto}
+                        index={2}
                     />
                     <TestimonialCard
                         nombre="Wilhelm Reyes"
@@ -106,6 +128,7 @@ export default function Testimonials() {
                         logo={cardW1}
                         empresa="GIOXUS"
                         brandImg={logoGioxus}
+                        index={3}
                     />
                 </div>
             </div>
