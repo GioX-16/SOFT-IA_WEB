@@ -118,7 +118,7 @@ const styles = {
     section: {
         width: '100%',
         minHeight: '100vh',
-        background: 'radial-gradient(ellipse at top left, #1a2236 60%, #0d101a 100%)',
+        background: 'linear-gradient(to right, #031527, #020507)',
         padding: '60px 0',
         display: 'flex',
         flexDirection: 'column' as const,
