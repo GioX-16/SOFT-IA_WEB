@@ -12,22 +12,46 @@ const PortfolioSection: React.FC = () => {
 
     const projects = [
         {
-            title: "E-commerce Platform",
-            description: "Plataforma completa de comercio electrónico con React y Node.js",
-            image: "/src/assets/img/ECCOMERCE.png",
-            technologies: ["React", "Node.js", "MongoDB", "Stripe"]
+            title: "App Banco Lafise",
+            description: "Este Diseño fue Para una Prueba de Reclutamiento Para Banco LAFISE.",
+            image: "/src/assets/img/Portfolio_img/App_lafise_Practice.png",
+            technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+            link: "https://ejemplo.com/lafise"
         },
         {
-            title: "Web3 Application",
-            description: "Aplicación descentralizada con integración blockchain",
-            image: "/src/assets/img/WEB3.png",
-            technologies: ["Solidity", "Web3.js", "React", "Ethereum"]
+            title: "Plataforma Groveto",
+            description: "Plataforma para el Reclutamiento de Talentos",
+            image: "/src/assets/img/Portfolio_img/groveto.png",
+            technologies: ["Solidity", "Web3.js", "React", "Ethereum"],
+            link: "https://ejemplo.com/groveto"
         },
         {
-            title: "UX/UI Design System",
-            description: "Sistema de diseño completo para aplicaciones móviles y web",
-            image: "/src/assets/img/UX.png",
-            technologies: ["Figma", "Adobe XD", "React Native", "Framer"]
+            title: "Gnomo Studio",
+            description: "Desarrollo Web Multi pagina y Responsive",
+            image: "/src/assets/img/Portfolio_img/GNOMO_HERO.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/gnomo"
+        },
+        {
+            title: "Diseño de Marca SOFT-IA",
+            description: "Diseño, Prototipo de la Web SOFT-IA",
+            image: "/src/assets/img/Portfolio_img/MARCA_SOFTIA.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/softia"
+        },
+        {
+            title: "Eccomerce GX STORE",
+            description: "Eccomerce o web de comercio basica",
+            image: "/src/assets/img/Portfolio_img/Eccomerce.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/gxstore"
+        },
+        {
+            title: "Plataforma Repher",
+            description: "Web Completa para la Plataforma de Repher, Diseño y Desarrollo.",
+            image: "/src/assets/img/Portfolio_img/amaya_Projects.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/repher"
         }
     ];
 
@@ -52,7 +76,7 @@ const PortfolioSection: React.FC = () => {
                 viewport={{ once: true }}
                 style={{
                     textAlign: "center",
-                    fontSize: "2.5rem",
+                    fontSize: "2rem",
                     fontWeight: "bold",
                     marginBottom: "3rem",
                     color: "#E9ECF0"
@@ -69,7 +93,7 @@ const PortfolioSection: React.FC = () => {
                 style={{
                     display: "grid",
                     gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))",
-                    gap: "2rem",
+                    gap: "1.5rem",
                     maxWidth: "1200px",
                     margin: "0 auto"
                 }}
@@ -85,64 +109,117 @@ const PortfolioSection: React.FC = () => {
                         style={{
                             background: "rgba(255, 255, 255, 0.1)",
                             borderRadius: "20px",
-                            padding: "1.5rem",
+                            padding: 0,
                             border: "1px solid rgba(255, 255, 255, 0.2)",
                             backdropFilter: "blur(10px)",
                             cursor: "pointer",
-                            transition: "all 0.3s ease"
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "100%"
                         }}
+                        onMouseEnter={e => e.currentTarget.style.background = "#0B0B0B"}
+                        onMouseLeave={e => e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)"}
                     >
                         <div style={{
                             width: "100%",
-                            height: "200px",
-                            background: "linear-gradient(45deg, #4498C2, #336178)",
-                            borderRadius: "15px",
-                            marginBottom: "1rem",
+                            height: "220px",
+                            background: "linear-gradient(45deg,rgb(226, 226, 226),rgb(235, 235, 235))",
+                            borderTopLeftRadius: "20px",
+                            borderTopRightRadius: "20px",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontSize: "3rem"
+                            overflow: "hidden"
                         }}>
-                            🚀
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                style={{
+                                    maxWidth: "100%",
+                                    maxHeight: "100%",
+                                    objectFit: "contain",
+                                    display: "block",
+                                    margin: "auto",
+                                    borderRadius: "0px"
+                                }}
+                            />
                         </div>
-                        
-                        <h3 style={{
-                            fontSize: "1.5rem",
-                            fontWeight: "bold",
-                            marginBottom: "0.5rem",
-                            color: "#E9ECF0"
-                        }}>
-                            {project.title}
-                        </h3>
-                        
-                        <p style={{
-                            color: "#B8C5D1",
-                            marginBottom: "1rem",
-                            lineHeight: "1.6"
-                        }}>
-                            {project.description}
-                        </p>
-                        
                         <div style={{
+                            background: "#F7FAFC",
+                            borderBottomLeftRadius: "20px",
+                            borderBottomRightRadius: "20px",
+                            padding: "1.5rem 1.2rem 1.2rem 1.2rem",
+                            flex: 1,
                             display: "flex",
-                            flexWrap: "wrap",
-                            gap: "0.5rem"
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            minHeight: "200px"
                         }}>
-                            {project.technologies.map((tech, techIndex) => (
-                                <span
-                                    key={techIndex}
+                            <div>
+                                <h3 style={{
+                                    fontSize: "1.2rem",
+                                    fontWeight: "bold",
+                                    marginBottom: "0.5rem",
+                                    color: "#222"
+                                }}>
+                                    {project.title}
+                                </h3>
+                                <p style={{
+                                    color: "#444",
+                                    marginBottom: "1rem",
+                                    lineHeight: "1.5"
+                                }}>
+                                    {project.description}
+                                </p>
+                                <div style={{
+                                    display: "flex",
+                                    flexWrap: "wrap",
+                                    gap: "0.5rem",
+                                    marginBottom: "1rem"
+                                }}>
+                                    {project.technologies.map((tech, techIndex) => (
+                                        <span
+                                            key={techIndex}
+                                            style={{
+                                                background: "#4498C2",
+                                                color: "#fff",
+                                                padding: "0.25rem 0.75rem",
+                                                borderRadius: "15px",
+                                                fontSize: "0.8rem",
+                                                fontWeight: "600"
+                                            }}
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "flex-start"
+                            }}>
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     style={{
-                                        background: "#4498C2",
+                                        display: "inline-block",
+                                        marginTop: "0.5rem",
+                                        padding: "0.7rem 1.5rem",
+                                        borderRadius: "8px",
+                                        background: "#5CA6E8",
                                         color: "#fff",
-                                        padding: "0.25rem 0.75rem",
-                                        borderRadius: "15px",
-                                        fontSize: "0.8rem",
-                                        fontWeight: "600"
+                                        fontWeight: 600,
+                                        textDecoration: "none",
+                                        fontSize: "1rem",
+                                        textAlign: "center",
+                                        transition: "background 0.5s ease"
                                     }}
+                                    onMouseEnter={e => e.currentTarget.style.background = "linear-gradient(90deg, #0B0B0B 0%, #4498C2 100%)"}
                                 >
-                                    {tech}
-                                </span>
-                            ))}
+                                    Ver Proyecto.
+                                </a>
+                            </div>
                         </div>
                     </motion.div>
                 ))}
