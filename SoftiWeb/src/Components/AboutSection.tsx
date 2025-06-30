@@ -133,12 +133,14 @@ const AboutUs: React.FC = () => {
                             color: "#E9ECF0",
                             transition: "background 0.3s",
                         }}
-                        onMouseEnter={(e) =>
-                            (e.currentTarget.style.background = "#4593C9")
-                        }
-                        onMouseLeave={(e) =>
-                            (e.currentTarget.style.background = "Transparent")
-                        }
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "#256fa1";
+                            e.currentTarget.style.color = "#fff";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "Transparent";
+                            e.currentTarget.style.color = "#E9ECF0";
+                        }}
                     >
                         {tag}
                     </motion.div>

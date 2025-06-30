@@ -27,8 +27,21 @@ export default function Landing() {
                 }
             }
         };
+        const handleHashChange = () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && hash !== "top") {
+                setShowHeader(false);
+                setShowNavbar(true);
+            } else {
+                handleScroll();
+            }
+        };
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener("hashchange", handleHashChange);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("hashchange", handleHashChange);
+        };
     }, []);
 
     return (
