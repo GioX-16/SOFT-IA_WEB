@@ -61,8 +61,9 @@ const Navbar = () => {
                     right: 0,
                     margin: "0 auto",
                     width: "100%",
-                    maxWidth: "1200px",
+                    maxWidth: "950px",
                     zIndex: 9999,
+                    padding: "0 0.5rem",
                 }}>
                     <motion.nav
                         initial={{ opacity: 0, y: -20 }}
@@ -70,7 +71,7 @@ const Navbar = () => {
                         transition={{ duration: 0.5 }}
                         style={{
                             position: "relative",
-                            padding: "0.35rem 1.5rem",
+                            padding: "0.35rem 1.2rem",
                             borderRadius: "2.5rem",
                             display: "flex",
                             gap: "1.5rem",
@@ -101,8 +102,14 @@ const Navbar = () => {
                                     }}
                                     onClick={e => {
                                         e.preventDefault();
-                                        window.scrollTo({ top: 0, behavior: "smooth" });
-                                        window.location.hash = "#top";
+                                        if (item.to === "top") {
+                                            window.scrollTo({ top: 0, behavior: "smooth" });
+                                        } else {
+                                            const section = document.getElementById(item.to);
+                                            if (section) {
+                                                section.scrollIntoView({ behavior: 'smooth' });
+                                            }
+                                        }
                                     }}
                                     onMouseEnter={e => (e.currentTarget.style.color = "#E9ECF0")}
                                     onMouseLeave={e => (e.currentTarget.style.color = "#ffffff")}
@@ -162,10 +169,13 @@ const Navbar = () => {
                                     }}
                                     onClick={e => {
                                         e.preventDefault();
-                                        const section = document.getElementById(item.to);
-                                        if (section) {
-                                            section.scrollIntoView({ behavior: 'smooth' });
-                                            window.location.hash = `#${item.to}`;
+                                        if (item.to === "top") {
+                                            window.scrollTo({ top: 0, behavior: "smooth" });
+                                        } else {
+                                            const section = document.getElementById(item.to);
+                                            if (section) {
+                                                section.scrollIntoView({ behavior: 'smooth' });
+                                            }
                                         }
                                     }}
                                     onMouseEnter={e => (e.currentTarget.style.color = "#E9ECF0")}
@@ -285,12 +295,10 @@ const Navbar = () => {
                                         setIsMenuOpen(false);
                                         if (item.to === "top") {
                                             window.scrollTo({ top: 0, behavior: "smooth" });
-                                            window.location.hash = "#top";
                                         } else {
                                             const section = document.getElementById(item.to);
                                             if (section) {
                                                 section.scrollIntoView({ behavior: 'smooth' });
-                                                window.location.hash = `#${item.to}`;
                                             }
                                         }
                                     }}
