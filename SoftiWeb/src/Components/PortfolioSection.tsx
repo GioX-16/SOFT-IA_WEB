@@ -101,11 +101,11 @@ const PortfolioSection: React.FC = () => {
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.2 }}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 120 }}
                         viewport={{ once: true }}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.04 }}
                         style={{
                             background: "rgba(255, 255, 255, 0.1)",
                             borderRadius: "20px",
@@ -115,10 +115,18 @@ const PortfolioSection: React.FC = () => {
                             cursor: "pointer",
                             display: "flex",
                             flexDirection: "column",
-                            height: "100%"
+                            height: "100%",
+                            boxShadow: "0 2px 16px 0 rgba(68,152,194,0.10)",
+                            transition: "background 0.4s, box-shadow 0.4s"
                         }}
-                        onMouseEnter={e => e.currentTarget.style.background = "#0B0B0B"}
-                        onMouseLeave={e => e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)"}
+                        onMouseEnter={e => {
+                            e.currentTarget.style.background = "linear-gradient(120deg, #4498C2 0%, #0B0B0B 100%)";
+                            e.currentTarget.style.boxShadow = "0 4px 24px 0 rgba(68,152,194,0.25)";
+                        }}
+                        onMouseLeave={e => {
+                            e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+                            e.currentTarget.style.boxShadow = "0 2px 16px 0 rgba(68,152,194,0.10)";
+                        }}
                     >
                         <div style={{
                             width: "100%",
