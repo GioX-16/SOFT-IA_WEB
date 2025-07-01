@@ -17,7 +17,7 @@ const ContactSection: React.FC = () => {
                 justifyContent: "space-between"
             }}
         >
-            {/* Capa de fondo con opacidad */}
+            {/* Fondo */}
             <div
                 style={{
                     position: "absolute",
@@ -32,18 +32,18 @@ const ContactSection: React.FC = () => {
                     zIndex: 0
                 }}
             />
+
             {/* Contenido principal */}
             <div style={{ position: "relative", zIndex: 1, flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <div style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 2fr",
-                    gap: "0",
                     height: "calc(100vh - 80px)",
                     maxWidth: "1200px",
                     margin: "0 auto",
                     width: "100%"
                 }}>
-                    {/* Columna Izquierda: Info de contacto */}
+                    {/* Columna izquierda */}
                     <div style={{
                         display: "flex",
                         flexDirection: "column",
@@ -54,44 +54,19 @@ const ContactSection: React.FC = () => {
                         padding: "0 1rem",
                         height: "100%"
                     }}>
-                        <div style={{
-                            background: "rgba(0,0,0,0.32)",
-                            borderRadius: 16,
-                            padding: "1.2rem 1rem 1rem 1rem",
-                            width: "100%",
-                            maxWidth: 250,
-                            textAlign: "center",
-                            boxShadow: "0 2px 16px 0 rgba(0,0,0,0.08)"
-                        }}>
+                        <div style={contactBoxStyle}>
                             <FaMapMarkerAlt size={38} color="#00FF47" style={{ marginBottom: 10 }} />
-                            <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 2, lineHeight: 1.1 }}>Managua<br/>Nicaragua</div>
+                            <div style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.1 }}>Managua<br />Nicaragua</div>
                         </div>
-                        <a
-                            href="https://wa.me/50588888888" // Cambia el número por el real
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                                background: "rgba(0,0,0,0.32)",
-                                borderRadius: 16,
-                                padding: "1.2rem 1rem 1rem 1rem",
-                                width: "100%",
-                                maxWidth: 250,
-                                textAlign: "center",
-                                boxShadow: "0 2px 16px 0 rgba(0,0,0,0.08)",
-                                textDecoration: "none",
-                                transition: "background 0.2s, box-shadow 0.2s",
-                                display: "block"
-                            }}
-                            onMouseOver={e => (e.currentTarget.style.background = 'rgba(0,255,71,0.13)')}
-                            onMouseOut={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.32)')}
-                        >
+                        <a href="https://wa.me/50588888888" target="_blank" rel="noopener noreferrer" style={contactBoxStyle}>
                             <FaWhatsapp size={38} color="#00FF47" style={{ marginBottom: 10 }} />
-                            <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 2, lineHeight: 1.1 }}>
-                                Escribenos A<br/>Nuestro<br/>Whatsapp
+                            <div style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.1 }}>
+                                Escribenos A<br />Nuestro<br />Whatsapp
                             </div>
                         </a>
                     </div>
-                    {/* Columna Derecha: Formulario */}
+
+                    {/* Columna derecha */}
                     <div style={{
                         display: "flex",
                         flexDirection: "column",
@@ -103,7 +78,7 @@ const ContactSection: React.FC = () => {
                         <div style={{
                             background: "rgba(0,0,0,0.32)",
                             borderRadius: 16,
-                            padding: "1.2rem 1.2rem 1rem 1.2rem",
+                            padding: "1.5rem",
                             width: "100%",
                             maxWidth: 600,
                             boxShadow: "0 2px 16px 0 rgba(0,0,0,0.08)"
@@ -113,40 +88,21 @@ const ContactSection: React.FC = () => {
                                 fontWeight: 900,
                                 letterSpacing: 1,
                                 textTransform: "uppercase",
-                                textAlign: "right",
-                                marginBottom: "0.5rem",
-                                width: "100%"
+                                textAlign: "left",
+                                marginBottom: "1rem"
                             }}>
                                 CONTACTANOS
                             </h2>
-                            <form style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "0.8rem"
-                            }}>
-                                <div style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "1fr 1fr",
-                                    gap: "1rem"
-                                }}>
+                            <form style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                                     <input type="text" placeholder="Firs Name" style={inputStyleCompact} />
                                     <input type="text" placeholder="Phone" style={inputStyleCompact} />
                                     <input type="text" placeholder="Company" style={inputStyleCompact} />
                                     <input type="email" placeholder="Email" style={inputStyleCompact} />
                                 </div>
-                                <textarea placeholder="Message" rows={4} style={{ ...inputStyleCompact, resize: "vertical", minHeight: 70, gridColumn: "1/3" }} />
+                                <textarea placeholder="Message" rows={5} style={{ ...inputStyleCompact, resize: "vertical", gridColumn: "1/3" }} />
                                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                                    <button type="submit" style={{
-                                        background: "#fff",
-                                        color: "#222",
-                                        fontWeight: 700,
-                                        border: "none",
-                                        borderRadius: 10,
-                                        padding: "0.6rem 1.5rem",
-                                        fontSize: "1.2rem",
-                                        cursor: "pointer",
-                                        boxShadow: "0 1px 4px 0 rgba(0,0,0,0.08)"
-                                    }}>
+                                    <button type="submit" style={buttonStyle}>
                                         Enviar
                                     </button>
                                 </div>
@@ -155,28 +111,27 @@ const ContactSection: React.FC = () => {
                     </div>
                 </div>
             </div>
+
             {/* Footer */}
             <footer style={{
                 position: "relative",
                 zIndex: 2,
-                width: "100%",
                 display: "flex",
-                alignItems: "center",
+                flexWrap: "wrap",
                 justifyContent: "space-between",
-                padding: "0.7rem 2vw 0.7rem 2vw",
+                alignItems: "center",
+                gap: "1rem",
+                padding: "1rem 2vw",
                 borderTop: "1px solid rgba(255,255,255,0.12)",
                 background: "rgba(0,0,0,0.13)",
-                fontSize: 15
+                fontSize: 14
             }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <img src="/src/assets/Logos/logoBYN.png" alt="SOFT-IA Logo" style={{ height: 28, marginRight: 7 }} />
+                    <img src="/src/assets/Logos/logoBYN.png" alt="SOFT-IA Logo" style={{ height: 28 }} />
                     <span style={{ fontWeight: 700, letterSpacing: 2 }}>SOFT - IA</span>
                 </div>
-                <div style={{ color: "#ccc", fontSize: 13 }}>
-                    © 2025 All Rights Reserved
-                </div>
-                <div style={{ color: "#ccc", fontSize: 13 }}>
-                    © 2025 Soft-ia
+                <div style={{ color: "#ccc", fontSize: 13, flex: 1, textAlign: "center" }}>
+                    © 2025 Soft-ia | All Rights Reserved
                 </div>
                 <div style={{ display: "flex", gap: 12 }}>
                     <a href="#" style={iconLinkStyleCompact}><FaFacebookF /></a>
@@ -186,9 +141,11 @@ const ContactSection: React.FC = () => {
                     <a href="https://www.instagram.com/sandi.giox/" style={iconLinkStyleCompact}><FaInstagram /></a>
                 </div>
             </footer>
-            {/* Responsive styles */}
+
+            {/* Estilos responsivos */}
             <style>{`
                 html, body { overflow-x: hidden; }
+
                 @media (max-width: 900px) {
                     #contact > div > div {
                         grid-template-columns: 1fr !important;
@@ -201,12 +158,29 @@ const ContactSection: React.FC = () => {
                         margin-bottom: 1.2rem !important;
                     }
                 }
-                @media (max-width: 600px) {
+
+                @media (max-width: 768px) {
                     #contact h2 {
-                        font-size: 1.2rem !important;
+                        font-size: 1.5rem !important;
+                        text-align: center !important;
                     }
+
                     #contact form {
                         padding: 0.5rem !important;
+                    }
+
+                    footer {
+                        flex-direction: column !important;
+                        text-align: center !important;
+                    }
+
+                    footer div:nth-child(2) {
+                        order: 3;
+                        margin-top: 1rem;
+                    }
+
+                    footer div:last-child {
+                        justify-content: center;
                     }
                 }
             `}</style>
@@ -214,6 +188,7 @@ const ContactSection: React.FC = () => {
     );
 };
 
+// Reutilizables
 const inputStyleCompact: React.CSSProperties = {
     width: "100%",
     padding: "0.7rem 0.9rem",
@@ -224,8 +199,32 @@ const inputStyleCompact: React.CSSProperties = {
     fontSize: "0.98rem",
     fontWeight: 500,
     outline: "none",
-    marginBottom: 0,
     boxShadow: "0 1px 4px 0 rgba(0,0,0,0.06)"
+};
+
+const buttonStyle: React.CSSProperties = {
+    background: "#fff",
+    color: "#222",
+    fontWeight: 700,
+    border: "none",
+    borderRadius: 10,
+    padding: "0.6rem 1.5rem",
+    fontSize: "1.1rem",
+    cursor: "pointer",
+    boxShadow: "0 1px 4px 0 rgba(0,0,0,0.08)"
+};
+
+const contactBoxStyle: React.CSSProperties = {
+    background: "rgba(0,0,0,0.32)",
+    borderRadius: 16,
+    padding: "1.2rem 1rem",
+    width: "100%",
+    maxWidth: 250,
+    textAlign: "center",
+    boxShadow: "0 2px 16px 0 rgba(0,0,0,0.08)",
+    textDecoration: "none",
+    transition: "background 0.2s",
+    display: "block"
 };
 
 const iconLinkStyleCompact: React.CSSProperties = {
@@ -242,4 +241,4 @@ const iconLinkStyleCompact: React.CSSProperties = {
     textDecoration: "none"
 };
 
-export default ContactSection; 
+export default ContactSection;
