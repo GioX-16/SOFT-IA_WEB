@@ -70,7 +70,7 @@ const ServicesSection: React.FC = () => {
                 viewport={{ once: true }}
                 style={{
                     textAlign: "center",
-                    fontSize: "2.5rem",
+                    fontSize: "1.8rem",
                     fontWeight: "bold",
                     marginBottom: "1rem",
                     color: "#E9ECF0"

@@ -150,7 +150,7 @@ const styles = {
     },
     title: {
         color: '#fff',
-        fontSize: '2.2rem',
+        fontSize: '1.8rem',
         fontWeight: 900,
         letterSpacing: '2px',
         marginBottom: '36px',

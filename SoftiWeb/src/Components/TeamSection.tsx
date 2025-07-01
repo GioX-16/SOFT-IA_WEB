@@ -119,7 +119,7 @@ const TeamSection: React.FC = () => {
             <h2
                 style={{
                     textAlign: "center",
-                    fontSize: isMobile ? "2rem" : "1.5rem",
+                    fontSize: isMobile ? "1.8rem" : "1.8rem",
                     color: "#FFFFFF",
                     fontWeight: "bold",
                     marginBottom: "1rem",

@@ -53,6 +53,27 @@ const PortfolioSection: React.FC = () => {
             image: "/src/assets/img/Portfolio_img/amaya_Projects.png",
             technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
             link: "https://ejemplo.com/repher"
+        },
+        {
+            title: "Plataforma Repher",
+            description: "Web Completa para la Plataforma de Repher, Diseño y Desarrollo.",
+            image: "/src/assets/img/Portfolio_img/amaya_Projects.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/repher"
+        },
+        {
+            title: "Plataforma Repher",
+            description: "Web Completa para la Plataforma de Repher, Diseño y Desarrollo.",
+            image: "/src/assets/img/Portfolio_img/amaya_Projects.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/repher"
+        },
+        {
+            title: "Plataforma Repher",
+            description: "Web Completa para la Plataforma de Repher, Diseño y Desarrollo.",
+            image: "/src/assets/img/Portfolio_img/amaya_Projects.png",
+            technologies: ["Figma", "Adobe XD", "React Native", "Framer"],
+            link: "https://ejemplo.com/repher"
         }
     ];
 
@@ -76,7 +97,7 @@ const PortfolioSection: React.FC = () => {
             <h2
                 style={{
                     textAlign: "center",
-                    fontSize: "2rem",
+                    fontSize: "1.8rem",
                     fontWeight: "bold",
                     marginBottom: "3rem",
                     color: "#E9ECF0"
@@ -89,7 +110,7 @@ const PortfolioSection: React.FC = () => {
                 style={{
                     display: "grid",
                     gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(240px, 1fr))",
-                    gap: "1.2rem",
+                    gap: "3rem",
                     maxWidth: "1000px",
                     margin: "0 auto"
                 }}

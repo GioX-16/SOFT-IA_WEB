@@ -38,7 +38,7 @@ const AboutUs: React.FC = () => {
             <h2
                 style={{
                     textAlign: "center",
-                    fontSize: "2rem",
+                    fontSize: "1.8rem",
                     fontWeight: "bold",
                     marginBottom: "2rem",
                     marginTop: "10rem",
