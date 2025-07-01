@@ -8,7 +8,7 @@ const ContactSection: React.FC = () => {
                 position: "relative",
                 padding: "0",
                 minHeight: "100vh",
-                width: "100vw",
+                width: "100%",
                 overflow: "hidden",
                 fontFamily: "'Play', sans-serif",
                 color: "#fff",
@@ -25,7 +25,7 @@ const ContactSection: React.FC = () => {
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    backgroundImage: "url('/src/assets/Backgrounds/SoftiContc.jpg')",
+                    backgroundImage: "url('../src/assets/Backgrounds/Contact_Section.png')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     opacity: 0.5,
@@ -188,6 +188,7 @@ const ContactSection: React.FC = () => {
             </footer>
             {/* Responsive styles */}
             <style>{`
+                html, body { overflow-x: hidden; }
                 @media (max-width: 900px) {
                     #contact > div > div {
                         grid-template-columns: 1fr !important;
