@@ -69,11 +69,7 @@ const PortfolioSection: React.FC = () => {
                 justifyContent: "center"
             }}
         >
-            <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+            <h2
                 style={{
                     textAlign: "center",
                     fontSize: "2rem",
@@ -83,32 +79,27 @@ const PortfolioSection: React.FC = () => {
                 }}
             >
                 Nuestros Proyectos
-            </motion.h2>
+            </h2>
 
-            <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+            <div
                 style={{
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))",
-                    gap: "1.5rem",
-                    maxWidth: "1200px",
+                    gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(240px, 1fr))",
+                    gap: "1.2rem",
+                    maxWidth: "1000px",
                     margin: "0 auto"
                 }}
             >
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: index * 0.15, type: "spring", stiffness: 120 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.12 }}
                         viewport={{ once: true }}
-                        whileHover={{ scale: 1.04 }}
                         style={{
                             background: "rgba(255, 255, 255, 0.1)",
-                            borderRadius: "20px",
+                            borderRadius: "16px",
                             padding: 0,
                             border: "1px solid rgba(255, 255, 255, 0.2)",
                             backdropFilter: "blur(10px)",
@@ -116,24 +107,21 @@ const PortfolioSection: React.FC = () => {
                             display: "flex",
                             flexDirection: "column",
                             height: "100%",
-                            boxShadow: "0 2px 16px 0 rgba(68,152,194,0.10)",
-                            transition: "background 0.4s, box-shadow 0.4s"
+                            boxShadow: "0 2px 12px 0 rgba(68,152,194,0.10)",
+                            transition: "background 0.4s, box-shadow 0.4s, color 0.4s"
                         }}
-                        onMouseEnter={e => {
-                            e.currentTarget.style.background = "linear-gradient(120deg, #4498C2 0%, #0B0B0B 100%)";
-                            e.currentTarget.style.boxShadow = "0 4px 24px 0 rgba(68,152,194,0.25)";
-                        }}
-                        onMouseLeave={e => {
-                            e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-                            e.currentTarget.style.boxShadow = "0 2px 16px 0 rgba(68,152,194,0.10)";
+                        whileHover={{
+                            background: "#1e293b",
+                            color: "#fff",
+                            boxShadow: "0 4px 24px 0 #1e293b"
                         }}
                     >
                         <div style={{
                             width: "100%",
-                            height: "220px",
+                            height: "150px",
                             background: "linear-gradient(45deg,rgb(226, 226, 226),rgb(235, 235, 235))",
-                            borderTopLeftRadius: "20px",
-                            borderTopRightRadius: "20px",
+                            borderTopLeftRadius: "16px",
+                            borderTopRightRadius: "16px",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -154,36 +142,39 @@ const PortfolioSection: React.FC = () => {
                         </div>
                         <div style={{
                             background: "#F7FAFC",
-                            borderBottomLeftRadius: "20px",
-                            borderBottomRightRadius: "20px",
-                            padding: "1.5rem 1.2rem 1.2rem 1.2rem",
+                            borderBottomLeftRadius: "16px",
+                            borderBottomRightRadius: "16px",
+                            padding: "1rem 0.8rem 0.8rem 0.8rem",
                             flex: 1,
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "space-between",
-                            minHeight: "200px"
+                            minHeight: "140px",
+                            transition: "background 0.4s, color 0.4s"
                         }}>
                             <div>
                                 <h3 style={{
-                                    fontSize: "1.2rem",
+                                    fontSize: "1rem",
                                     fontWeight: "bold",
-                                    marginBottom: "0.5rem",
-                                    color: "#222"
+                                    marginBottom: "0.4rem",
+                                    color: "#222",
+                                    transition: "color 0.4s"
                                 }}>
                                     {project.title}
                                 </h3>
                                 <p style={{
                                     color: "#444",
-                                    marginBottom: "1rem",
-                                    lineHeight: "1.5"
+                                    marginBottom: "0.7rem",
+                                    lineHeight: "1.4",
+                                    transition: "color 0.4s"
                                 }}>
                                     {project.description}
                                 </p>
                                 <div style={{
                                     display: "flex",
                                     flexWrap: "wrap",
-                                    gap: "0.5rem",
-                                    marginBottom: "1rem"
+                                    gap: "0.4rem",
+                                    marginBottom: "0.7rem"
                                 }}>
                                     {project.technologies.map((tech, techIndex) => (
                                         <span
@@ -191,9 +182,9 @@ const PortfolioSection: React.FC = () => {
                                             style={{
                                                 background: "#4498C2",
                                                 color: "#fff",
-                                                padding: "0.25rem 0.75rem",
-                                                borderRadius: "15px",
-                                                fontSize: "0.8rem",
+                                                padding: "0.18rem 0.6rem",
+                                                borderRadius: "12px",
+                                                fontSize: "0.7rem",
                                                 fontWeight: "600"
                                             }}
                                         >
@@ -212,14 +203,14 @@ const PortfolioSection: React.FC = () => {
                                     rel="noopener noreferrer"
                                     style={{
                                         display: "inline-block",
-                                        marginTop: "0.5rem",
-                                        padding: "0.7rem 1.5rem",
+                                        marginTop: "0.3rem",
+                                        padding: "0.5rem 1.1rem",
                                         borderRadius: "8px",
                                         background: "#5CA6E8",
                                         color: "#fff",
                                         fontWeight: 600,
                                         textDecoration: "none",
-                                        fontSize: "1rem",
+                                        fontSize: "0.9rem",
                                         textAlign: "center",
                                         transition: "background 0.5s ease"
                                     }}
@@ -231,7 +222,7 @@ const PortfolioSection: React.FC = () => {
                         </div>
                     </motion.div>
                 ))}
-            </motion.div>
+            </div>
         </section>
     );
 };
