@@ -114,7 +114,7 @@ const ContactSection: React.FC = () => {
                                 letterSpacing: 1,
                                 textTransform: "uppercase",
                                 textAlign: "right",
-                                marginBottom: "1.2rem",
+                                marginBottom: "0.5rem",
                                 width: "100%"
                             }}>
                                 CONTACTANOS
@@ -127,7 +127,7 @@ const ContactSection: React.FC = () => {
                                 <div style={{
                                     display: "grid",
                                     gridTemplateColumns: "1fr 1fr",
-                                    gap: "0.7rem"
+                                    gap: "1rem"
                                 }}>
                                     <input type="text" placeholder="Firs Name" style={inputStyleCompact} />
                                     <input type="text" placeholder="Phone" style={inputStyleCompact} />
@@ -143,7 +143,7 @@ const ContactSection: React.FC = () => {
                                         border: "none",
                                         borderRadius: 10,
                                         padding: "0.6rem 1.5rem",
-                                        fontSize: "1rem",
+                                        fontSize: "1.2rem",
                                         cursor: "pointer",
                                         boxShadow: "0 1px 4px 0 rgba(0,0,0,0.08)"
                                     }}>
@@ -169,8 +169,8 @@ const ContactSection: React.FC = () => {
                 fontSize: 15
             }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <img src="/src/assets/Logos/Logo SOFT.png" alt="SOFT-IA Logo" style={{ height: 28, marginRight: 7 }} />
-                    <span style={{ fontWeight: 700, letterSpacing: 1 }}>SOFT - IA</span>
+                    <img src="/src/assets/Logos/logoBYN.png" alt="SOFT-IA Logo" style={{ height: 28, marginRight: 7 }} />
+                    <span style={{ fontWeight: 700, letterSpacing: 2 }}>SOFT - IA</span>
                 </div>
                 <div style={{ color: "#ccc", fontSize: 13 }}>
                     © 2025 All Rights Reserved
@@ -181,9 +181,9 @@ const ContactSection: React.FC = () => {
                 <div style={{ display: "flex", gap: 12 }}>
                     <a href="#" style={iconLinkStyleCompact}><FaFacebookF /></a>
                     <a href="#" style={iconLinkStyleCompact}><FaGithub /></a>
-                    <a href="#" style={iconLinkStyleCompact}><FaLinkedinIn /></a>
+                    <a href="https://www.linkedin.com/in/geovanny-sandino-137691273/" style={iconLinkStyleCompact}><FaLinkedinIn /></a>
                     <a href="#" style={iconLinkStyleCompact}><FaTelegramPlane /></a>
-                    <a href="#" style={iconLinkStyleCompact}><FaInstagram /></a>
+                    <a href="https://www.instagram.com/sandi.giox/" style={iconLinkStyleCompact}><FaInstagram /></a>
                 </div>
             </footer>
             {/* Responsive styles */}

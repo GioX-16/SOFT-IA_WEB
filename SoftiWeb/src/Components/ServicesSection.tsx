@@ -54,7 +54,7 @@ const ServicesSection: React.FC = () => {
             id="services"
             style={{
                 padding: "4rem 2rem",
-                background: "linear-gradient(to right, #020507, #031527)",
+                background: "linear-gradient(to right,  #031527, #020507)",
                 fontFamily: "'Play', sans-serif",
                 color: "#fff",
                 minHeight: "100vh",
