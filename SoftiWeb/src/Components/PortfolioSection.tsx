@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const PortfolioSection: React.FC = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -55,6 +56,8 @@ const PortfolioSection: React.FC = () => {
         }
     ];
 
+    const hoverGradient = "linear-gradient(135deg, #1f3b57, #3a506b, #1a2a40)";
+
     return (
         <section
             id="portfolio"
@@ -97,8 +100,10 @@ const PortfolioSection: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: index * 0.12 }}
                         viewport={{ once: true }}
+                        onMouseEnter={() => setHoveredCard(index)}
+                        onMouseLeave={() => setHoveredCard(null)}
                         style={{
-                            background: "rgba(255, 255, 255, 0.1)",
+                            background: hoveredCard === index ? hoverGradient : "rgba(255, 255, 255, 0.1)",
                             borderRadius: "16px",
                             padding: 0,
                             border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -107,26 +112,26 @@ const PortfolioSection: React.FC = () => {
                             display: "flex",
                             flexDirection: "column",
                             height: "100%",
-                            boxShadow: "0 2px 12px 0 rgba(68,152,194,0.10)",
-                            transition: "background 0.4s, box-shadow 0.4s, color 0.4s"
-                        }}
-                        whileHover={{
-                            background: "#1e293b",
-                            color: "#fff",
-                            boxShadow: "0 4px 24px 0 #1e293b"
+                            boxShadow:
+                                hoveredCard === index
+                                    ? "0 6px 24px rgba(0, 0, 0, 0.4)"
+                                    : "0 2px 12px 0 rgba(68,152,194,0.10)",
+                            transition: "all 0.4s ease"
                         }}
                     >
-                        <div style={{
-                            width: "100%",
-                            height: "150px",
-                            background: "linear-gradient(45deg,rgb(226, 226, 226),rgb(235, 235, 235))",
-                            borderTopLeftRadius: "16px",
-                            borderTopRightRadius: "16px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            overflow: "hidden"
-                        }}>
+                        <div
+                            style={{
+                                width: "100%",
+                                height: "150px",
+                                background: "linear-gradient(45deg,rgb(226, 226, 226),rgb(235, 235, 235))",
+                                borderTopLeftRadius: "16px",
+                                borderTopRightRadius: "16px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                overflow: "hidden"
+                            }}
+                        >
                             <img
                                 src={project.image}
                                 alt={project.title}
@@ -135,57 +140,65 @@ const PortfolioSection: React.FC = () => {
                                     maxHeight: "100%",
                                     objectFit: "contain",
                                     display: "block",
-                                    margin: "auto",
-                                    borderRadius: "0px"
+                                    margin: "auto"
                                 }}
                             />
                         </div>
-                        <div style={{
-                            background: "#F7FAFC",
-                            borderBottomLeftRadius: "16px",
-                            borderBottomRightRadius: "16px",
-                            padding: "1rem 0.8rem 0.8rem 0.8rem",
-                            flex: 1,
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "space-between",
-                            minHeight: "140px",
-                            transition: "background 0.4s, color 0.4s"
-                        }}>
+                        <div
+                            style={{
+                                background: hoveredCard === index ? "transparent" : "#F7FAFC",
+                                borderBottomLeftRadius: "16px",
+                                borderBottomRightRadius: "16px",
+                                padding: "1rem 0.8rem 0.8rem 0.8rem",
+                                flex: 1,
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                minHeight: "140px",
+                                transition: "background 0.4s ease"
+                            }}
+                        >
                             <div>
-                                <h3 style={{
-                                    fontSize: "1rem",
-                                    fontWeight: "bold",
-                                    marginBottom: "0.4rem",
-                                    color: "#222",
-                                    transition: "color 0.4s"
-                                }}>
+                                <h3
+                                    style={{
+                                        fontSize: "1rem",
+                                        fontWeight: "bold",
+                                        marginBottom: "0.4rem",
+                                        color: hoveredCard === index ? "#fff" : "#222",
+                                        transition: "color 0.4s"
+                                    }}
+                                >
                                     {project.title}
                                 </h3>
-                                <p style={{
-                                    color: "#444",
-                                    marginBottom: "0.7rem",
-                                    lineHeight: "1.4",
-                                    transition: "color 0.4s"
-                                }}>
+                                <p
+                                    style={{
+                                        color: hoveredCard === index ? "#ddd" : "#444",
+                                        marginBottom: "0.7rem",
+                                        lineHeight: "1.4",
+                                        transition: "color 0.4s"
+                                    }}
+                                >
                                     {project.description}
                                 </p>
-                                <div style={{
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    gap: "0.4rem",
-                                    marginBottom: "0.7rem"
-                                }}>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexWrap: "wrap",
+                                        gap: "0.4rem",
+                                        marginBottom: "0.7rem"
+                                    }}
+                                >
                                     {project.technologies.map((tech, techIndex) => (
                                         <span
                                             key={techIndex}
                                             style={{
-                                                background: "#4498C2",
+                                                background: hoveredCard === index ? "#00B4D8" : "#4498C2",
                                                 color: "#fff",
                                                 padding: "0.18rem 0.6rem",
                                                 borderRadius: "12px",
                                                 fontSize: "0.7rem",
-                                                fontWeight: "600"
+                                                fontWeight: "600",
+                                                transition: "background 0.4s"
                                             }}
                                         >
                                             {tech}
@@ -193,10 +206,7 @@ const PortfolioSection: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "flex-start"
-                            }}>
+                            <div style={{ display: "flex", justifyContent: "flex-start" }}>
                                 <a
                                     href={project.link}
                                     target="_blank"
@@ -206,15 +216,14 @@ const PortfolioSection: React.FC = () => {
                                         marginTop: "0.3rem",
                                         padding: "0.5rem 1.1rem",
                                         borderRadius: "8px",
-                                        background: "#5CA6E8",
-                                        color: "#fff",
+                                        background: hoveredCard === index ? "#fff" : "#5CA6E8",
+                                        color: hoveredCard === index ? "#000" : "#fff",
                                         fontWeight: 600,
                                         textDecoration: "none",
                                         fontSize: "0.9rem",
                                         textAlign: "center",
-                                        transition: "background 0.5s ease"
+                                        transition: "all 0.4s ease"
                                     }}
-                                    onMouseEnter={e => e.currentTarget.style.background = "linear-gradient(90deg, #0B0B0B 0%, #4498C2 100%)"}
                                 >
                                     Ver Proyecto.
                                 </a>
@@ -227,4 +236,4 @@ const PortfolioSection: React.FC = () => {
     );
 };
 
-export default PortfolioSection; 
+export default PortfolioSection;
