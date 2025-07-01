@@ -56,7 +56,8 @@ const PortfolioSection: React.FC = () => {
         }
     ];
 
-    const hoverGradient = "linear-gradient(135deg, #1f3b57, #3a506b, #1a2a40)";
+    const hoverGradient = "linear-gradient(140deg, #1F2E36, #4593C9)";
+
 
     return (
         <section
@@ -146,7 +147,7 @@ const PortfolioSection: React.FC = () => {
                         </div>
                         <div
                             style={{
-                                background: hoveredCard === index ? "transparent" : "#F7FAFC",
+                                background: hoveredCard === index ? "transparent" : "#E9ECF0",
                                 borderBottomLeftRadius: "16px",
                                 borderBottomRightRadius: "16px",
                                 padding: "1rem 0.8rem 0.8rem 0.8rem",
@@ -192,7 +193,7 @@ const PortfolioSection: React.FC = () => {
                                         <span
                                             key={techIndex}
                                             style={{
-                                                background: hoveredCard === index ? "#00B4D8" : "#4498C2",
+                                                background: hoveredCard === index ? "#0B0B0B" : "#4498C2",
                                                 color: "#fff",
                                                 padding: "0.18rem 0.6rem",
                                                 borderRadius: "12px",
@@ -216,7 +217,7 @@ const PortfolioSection: React.FC = () => {
                                         marginTop: "0.3rem",
                                         padding: "0.5rem 1.1rem",
                                         borderRadius: "8px",
-                                        background: hoveredCard === index ? "#fff" : "#5CA6E8",
+                                        background: hoveredCard === index ? "#fff" : "#4593C9", 
                                         color: hoveredCard === index ? "#000" : "#fff",
                                         fontWeight: 600,
                                         textDecoration: "none",
