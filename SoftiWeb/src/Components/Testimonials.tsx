@@ -52,7 +52,7 @@ function TestimonialCard({ nombre, cargo, testimonio, estrellas, logo, empresa, 
             <div style={styles.footer}>
                 <div style={styles.stars}>
                     {Array.from({ length: 5 }).map((_, i) => (
-                        <span key={i} style={{ color: i < estrellas ? "#1F2E36" : hover ? "#fff" : "#222" }}>★</span>
+                        <span key={i} style={{ color: i < estrellas ? "#4498C2" : hover ? "#E9ECF0" : "#222" }}>★</span>
                     ))}
                 </div>
                 <img src={brandImg} alt={`${empresa} logo`} style={styles.brandImg} />
@@ -101,7 +101,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         color: '#fff',
         fontSize: '1.8rem',
         fontWeight: 900,
-        letterSpacing: '2px',
+        letterSpacing: '1px',
         marginBottom: '36px',
         textAlign: 'center',
         textTransform: 'uppercase',
@@ -112,7 +112,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        gap: '32px',
+        gap: '10px',
         width: '100%',
         maxWidth: '1200px',
     },
@@ -120,7 +120,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        gap: '20px',
+        gap: '5px',
         minWidth: '180px',
     },
     phoneImg1: {
@@ -141,7 +141,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cards: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: '32px',
+        gap: '60px 60px', // Espaciado entre columnas y filas
         width: '100%',
         maxWidth: '900px',
     },
@@ -150,22 +150,22 @@ const styles: { [key: string]: React.CSSProperties } = {
         borderRadius: '16px',
         padding: '20px',
         width: '100%',
-        maxWidth: '480px',
-        minHeight: '160px',
+        maxWidth: '440px',
+        minHeight: '180px',
         transition: 'all 0.4s ease-in-out',
         cursor: 'pointer',
         color: '#222',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        gap: '20px',
+        gap: '10px',
         boxShadow: '0 2px 12px rgba(0,0,0,0.10)',
         position: 'relative',
         border: '1px solid #e6e6e6',
         overflow: 'hidden',
     },
     cardHover: {
-        background: 'linear-gradient(135deg, #4498C2, #1F2E36)',
+        background: 'linear-gradient(135deg, #1F2E36, #449BC7)',
         transform: 'translateY(-6px) scale(1.02)',
         color: '#fff',
         boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
