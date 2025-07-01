@@ -28,7 +28,7 @@ const ContactSection: React.FC = () => {
                     backgroundImage: "url('../src/assets/Backgrounds/Contact_Section.png')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    opacity: 0.5,
+                    opacity: 1,
                     zIndex: 0
                 }}
             />
@@ -48,10 +48,10 @@ const ContactSection: React.FC = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
-                        alignItems: "center",
+                        alignItems: "flex-start",
                         gap: "2rem",
                         borderRight: "2px solid rgba(255,255,255,0.15)",
-                        padding: "0 1rem",
+                        padding: "1rem",
                         height: "100%"
                     }}>
                         <div style={contactBoxStyle}>
@@ -71,30 +71,30 @@ const ContactSection: React.FC = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
-                        alignItems: "center",
-                        padding: "0 1rem",
+                        alignItems: "flex-end",
+                        padding: "1rem",
                         height: "100%"
                     }}>
                         <div style={{
                             background: "rgba(0,0,0,0.32)",
                             borderRadius: 16,
-                            padding: "1.5rem",
+                            padding: "3rem",
                             width: "100%",
                             maxWidth: 600,
-                            boxShadow: "0 2px 16px 0 rgba(0,0,0,0.08)"
+                            boxShadow: "0 2px 16px 0 rgba(175, 169, 169, 0.08)"
                         }}>
                             <h2 style={{
                                 fontSize: "2rem",
                                 fontWeight: 900,
                                 letterSpacing: 1,
                                 textTransform: "uppercase",
-                                textAlign: "left",
-                                marginBottom: "1rem"
+                                textAlign: "right",
+                                marginBottom: "1.5rem"
                             }}>
                                 CONTACTANOS
                             </h2>
-                            <form style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                            <form style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.5rem" }}>
                                     <input type="text" placeholder="Firs Name" style={inputStyleCompact} />
                                     <input type="text" placeholder="Phone" style={inputStyleCompact} />
                                     <input type="text" placeholder="Company" style={inputStyleCompact} />
