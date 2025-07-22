@@ -35,17 +35,24 @@ const AboutUs: React.FC = () => {
             }}
         >
             {isMobile && <Header />}
-            <h2
+            <motion.h2
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.7, ease: [0.4, 0.2, 0.3, 1] }}
+                viewport={{ once: true }}
                 style={{
                     textAlign: "center",
-                    fontSize: "1.8rem",
+                    fontSize: "2.2rem",
                     fontWeight: "bold",
                     marginBottom: "2rem",
                     marginTop: "10rem",
+                    letterSpacing: "2px",
+                    color: "#E9ECF0",
+                    textShadow: "0 4px 24px #4593C9AA"
                 }}
             >
                 ¿Quienes Somos?
-            </h2>
+            </motion.h2>
 
             {/* Parte central */}
             <div

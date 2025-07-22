@@ -1,4 +1,5 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import React, { useRef, useEffect, useState } from "react";
 import { FaInstagram, FaTiktok, FaLinkedin } from "react-icons/fa";
 
@@ -68,26 +69,15 @@ const TeamSection: React.FC = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-            },
-        },
+    // Variantes para animaciones
+    const titleVariants: Variants = {
+        hidden: { opacity: 0, y: -40 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0.2, 0.3, 1] } },
     };
-
-    const cardVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 0.5,
-            },
-        },
-    };
+    const cardVariants = (i: number): Variants => ({
+        hidden: { y: 60, opacity: 0, scale: 0.85, rotate: -4 },
+        visible: { y: 0, opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.7, delay: i * 0.15, type: "spring", stiffness: 60, damping: 12 } },
+    });
 
     return (
         <section
@@ -116,23 +106,29 @@ const TeamSection: React.FC = () => {
                 }}
             />
 
-            <h2
+            <motion.h2
+                variants={titleVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 style={{
                     textAlign: "center",
-                    fontSize: isMobile ? "1.8rem" : "1.8rem",
+                    fontSize: isMobile ? "2.2rem" : "2.2rem",
                     color: "#FFFFFF",
                     fontWeight: "bold",
                     marginBottom: "1rem",
                     zIndex: 1,
                     position: "relative",
+                    letterSpacing: "2px",
+                    textShadow: "0 4px 24px #4498C2AA"
                 }}
             >
                 TEAM WORK
-            </h2>
+            </motion.h2>
 
             {/* 🧑‍🤝‍🧑 Cards del equipo */}
             <motion.div
-                variants={containerVariants}
+                variants={{}}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 style={{
@@ -145,11 +141,14 @@ const TeamSection: React.FC = () => {
                     justifyContent: "center",
                 }}
             >
+                <AnimatePresence>
                 {teamMembers.map((member, index) => (
                     <motion.div
                         key={index}
-                        variants={cardVariants}
-                        whileHover={{ scale: 1.05 }}
+                        variants={cardVariants(index)}
+                        initial="hidden"
+                        animate={isInView ? "visible" : "hidden"}
+                        whileHover={{ scale: 1.08, boxShadow: "0 8px 32px #4498C2AA" }}
                         style={{
                             background: "rgba(255, 255, 255, 0.1)",
                             padding: "1rem",
@@ -159,6 +158,7 @@ const TeamSection: React.FC = () => {
                             position: "relative",
                             border: "1px solid rgba(255, 255, 255, 0.2)",
                             backdropFilter: "blur(5px)",
+                            transition: "all 0.3s cubic-bezier(.4,2,.3,1)"
                         }}
                     >
                         <motion.img
@@ -224,6 +224,7 @@ const TeamSection: React.FC = () => {
                         </div>
                     </motion.div>
                 ))}
+                </AnimatePresence>
             </motion.div>
         </section>
     );

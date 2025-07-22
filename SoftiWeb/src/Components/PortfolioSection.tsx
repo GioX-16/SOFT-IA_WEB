@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const PortfolioSection: React.FC = () => {
@@ -79,6 +80,16 @@ const PortfolioSection: React.FC = () => {
 
     const hoverGradient = "linear-gradient(140deg, #1F2E36, #4593C9)";
 
+    // Variantes para animaciones
+    const titleVariants: Variants = {
+        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: [0.4, 0.2, 0.3, 1] } },
+    };
+    const cardVariants = (i: number): Variants => ({
+        hidden: { opacity: 0, y: 60, scale: 0.85, rotate: -6 },
+        visible: { opacity: 1, y: 0, scale: 1, rotate: 0, transition: { duration: 0.7, delay: i * 0.13, type: "spring", stiffness: 60, damping: 12 } },
+    });
+
 
     return (
         <section
@@ -94,17 +105,23 @@ const PortfolioSection: React.FC = () => {
                 justifyContent: "center"
             }}
         >
-            <h2
+            <motion.h2
+                variants={titleVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 style={{
                     textAlign: "center",
-                    fontSize: "1.8rem",
+                    fontSize: "2.2rem",
                     fontWeight: "bold",
                     marginBottom: "3rem",
-                    color: "#E9ECF0"
+                    color: "#E9ECF0",
+                    letterSpacing: "2px",
+                    textShadow: "0 4px 24px #4593C9AA"
                 }}
             >
                 Nuestros Proyectos
-            </h2>
+            </motion.h2>
 
             <div
                 style={{
@@ -115,13 +132,16 @@ const PortfolioSection: React.FC = () => {
                     margin: "0 auto"
                 }}
             >
+                <AnimatePresence>
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.12 }}
-                        viewport={{ once: true }}
+                        variants={cardVariants(index)}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        whileHover={{ scale: 1.06, rotate: 2, boxShadow: "0 8px 32px #4593C9AA" }}
+                        transition={{ type: "spring", stiffness: 80, damping: 14 }}
                         onMouseEnter={() => setHoveredCard(index)}
                         onMouseLeave={() => setHoveredCard(null)}
                         style={{
@@ -138,7 +158,7 @@ const PortfolioSection: React.FC = () => {
                                 hoveredCard === index
                                     ? "0 6px 24px rgba(0, 0, 0, 0.4)"
                                     : "0 2px 12px 0 rgba(68,152,194,0.10)",
-                            transition: "all 0.4s ease"
+                            transition: "all 0.4s cubic-bezier(.4,2,.3,1)"
                         }}
                     >
                         <div
@@ -253,6 +273,7 @@ const PortfolioSection: React.FC = () => {
                         </div>
                     </motion.div>
                 ))}
+                </AnimatePresence>
             </div>
         </section>
     );

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const ServicesSection: React.FC = () => {
@@ -49,6 +50,20 @@ const ServicesSection: React.FC = () => {
         }
     ];
 
+    // Variantes para animaciones
+    const titleVariants: Variants = {
+        hidden: { opacity: 0, x: -60 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.4, 0.2, 0.3, 1] } },
+    };
+    const subtitleVariants: Variants = {
+        hidden: { opacity: 0, x: 60 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2, ease: [0.4, 0.2, 0.3, 1] } },
+    };
+    const cardVariants = (i: number): Variants => ({
+        hidden: { opacity: 0, rotateY: 60, scale: 0.85 },
+        visible: { opacity: 1, rotateY: 0, scale: 1, transition: { duration: 0.7, delay: i * 0.12, type: "spring", stiffness: 60, damping: 12 } },
+    });
+
     return (
         <section
             id="services"
@@ -64,25 +79,27 @@ const ServicesSection: React.FC = () => {
             }}
         >
             <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                variants={titleVariants}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
                 style={{
                     textAlign: "center",
-                    fontSize: "1.8rem",
+                    fontSize: "2.2rem",
                     fontWeight: "bold",
                     marginBottom: "1rem",
-                    color: "#E9ECF0"
+                    color: "#E9ECF0",
+                    letterSpacing: "2px",
+                    textShadow: "0 4px 24px #4498C2AA"
                 }}
             >
                 Nuestros Servicios
             </motion.h2>
             
             <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                variants={subtitleVariants}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
                 style={{
                     textAlign: "center",
@@ -110,14 +127,16 @@ const ServicesSection: React.FC = () => {
                     margin: "0 auto"
                 }}
             >
+                <AnimatePresence>
                 {services.map((service, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.03, y: -5 }}
+                        variants={cardVariants(index)}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        whileHover={{ scale: 1.07, boxShadow: "0 8px 32px #4498C2AA", filter: "brightness(1.08)" }}
+                        transition={{ type: "spring", stiffness: 80, damping: 14 }}
                         style={{
                             background: "rgba(255, 255, 255, 0.05)",
                             borderRadius: "20px",
@@ -125,7 +144,7 @@ const ServicesSection: React.FC = () => {
                             border: "1px solid rgba(255, 255, 255, 0.1)",
                             backdropFilter: "blur(10px)",
                             cursor: "pointer",
-                            transition: "all 0.3s ease",
+                            transition: "all 0.3s cubic-bezier(.4,2,.3,1)",
                             position: "relative",
                             overflow: "hidden"
                         }}
@@ -183,6 +202,7 @@ const ServicesSection: React.FC = () => {
                         </div>
                     </motion.div>
                 ))}
+                </AnimatePresence>
             </motion.div>
         </section>
     );
