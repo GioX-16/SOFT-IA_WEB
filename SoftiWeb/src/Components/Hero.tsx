@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 // 🎥 Configuración
 const VIDEO_BG = false;
 const VIDEO_SRC = "/src/assets/Videos/Background_Final.mp4";
-const IMAGE_BG = "/src/assets/Backgrounds/StockCake-Coding Team Collaborates_1749771264.jpg";
+const IMAGE_BG = "/src/assets/Backgrounds/HERO2.png";   
 
 // 🎨 Variables de estilo
 const OVERLAY_COLOR = "rgba(0, 0, 0, 0.6)";
@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
                 width: "100vw",
                 minHeight: "100vh",
                 overflow: "hidden",
-                fontFamily: FONT_FAMILY,
+                fontFamily: "Play, sans-serif",
                 display: "flex",
                 flexDirection: "column",
                 background: isMobile
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
                             />
                             <div
                                 style={{
-                                    backgroundColor: OVERLAY_COLOR,
+                                    backgroundColor: "rgba(0, 0, 0, 0.6)",
                                     position: "absolute",
                                     top: 0,
                                     left: 0,
@@ -123,7 +123,7 @@ const Hero: React.FC = () => {
                             />
                             <div
                                 style={{
-                                    backgroundColor: OVERLAY_COLOR,
+                                    backgroundColor: "rgba(0, 0, 0, 0.6)",
                                     position: "absolute",
                                     top: 0,
                                     left: 0,
@@ -150,7 +150,7 @@ const Hero: React.FC = () => {
                             />
                             <div
                                 style={{
-                                    backgroundColor: OVERLAY_COLOR,
+                                    backgroundColor: "rgba(0, 0, 0, 0.6)",
                                     position: "absolute",
                                     top: 0,
                                     left: 0,
@@ -203,21 +203,21 @@ const Hero: React.FC = () => {
 
                     <h1
                         style={{
-                            color: TEXT_COLOR,
+                            color: "#FFFFFF",
                             fontSize: "clamp(1.5rem, 3vw, 2.8rem)",
                             fontWeight: "bold",
                             lineHeight: 1,
                         }}
                     >
                         Agencia De{" "}
-                        <span style={{ color: HIGHLIGHT_COLOR }}>
+                        <span style={{ color: "#38BDF8" }}>
                             Desarrollo y Diseño
                         </span>
                     </h1>
 
                     <p
                         style={{
-                            color: TEXT_COLOR,
+                            color: "#FFFFFF",
                             fontSize: "clamp(1rem, 2vw, 1.3rem)",
                             lineHeight: 1.5,
                         }}
@@ -229,8 +229,8 @@ const Hero: React.FC = () => {
                     <a
                         href="#servicios"
                         style={{
-                            background: BUTTON_BG,
-                            color: BUTTON_TEXT_COLOR,
+                            background: "#38BDF8",
+                            color: "#FFFFFF",
                             padding: "0.75rem 2rem",
                             borderRadius: "9999px",
                             fontWeight: "bold",
@@ -240,16 +240,17 @@ const Hero: React.FC = () => {
                             transition: "all 0.3s ease",
                         }}
                         onMouseEnter={(e) =>
-                            (e.currentTarget.style.background = BUTTON_BG_HOVER)
+                            (e.currentTarget.style.background = "#1F2E36")
                         }
                         onMouseLeave={(e) =>
-                            (e.currentTarget.style.background = BUTTON_BG)
+                            (e.currentTarget.style.background = "#38BDF8")
                         }
                     >
                         Conocer Más
                     </a>
                 </motion.div>
             </div>
+            
         </section>
     );
 };
