@@ -1,15 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from '../Pages/Landing';
-/* import Header from "../Components/Header";  */
+import Landing from "../Pages/Landing";
 
-
-export default function() {
-    return (
-        <BrowserRouter>
-        {/* <Header /> */}
-        <Routes>
-            <Route path="/" element={<Landing />} />
-        </Routes>
-        </BrowserRouter>
-    )
+export default function AppRouter() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }

@@ -1,233 +1,198 @@
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import React, { useRef, useEffect, useState } from "react";
 import { FaInstagram, FaTiktok, FaLinkedin } from "react-icons/fa";
-
-const teamMembers = [
-    {
-        name: "WILHELM REYES",
-        title: "Ingeniero de Sistemas",
-        cvLink: "https://drive.google.com/your-link-wilhelm",
-        imageDefault: "/src/assets/img/Cards/TeamCards/CardW1.png",
-        imageHover: "/src/assets/img/Cards/TeamCards/CardW2.png",
-        socials: {
-            instagram: "https://www.instagram.com/wilreyes900/",
-            tiktok: "https://www.tiktok.com/@wilhelmreyes448",
-            linkedin: "https://www.linkedin.com/in/wilhelm-antonio-reyes-romero-b28993149/",
-        },
-    },
-    {
-        name: "GEOVANNY SANDINO",
-        title: "Ingeniero de Sistemas",
-        cvLink: "https://drive.google.com/file/d/1Y2UJLk_8FMRIypF-gtLFCDbVqXgA6pda/view?usp=sharing",
-        imageDefault: "/src/assets/img/Cards/TeamCards/CardG1.png",
-        imageHover: "/src/assets/img/Cards/TeamCards/CardG2.png",
-        socials: {
-            instagram: "https://www.instagram.com/sandi.giox/",
-            tiktok: "https://www.tiktok.com/@dani.sandinx?is_from_webapp=1&sender_device=pc",
-            linkedin: "https://www.linkedin.com/in/geovanny-sandino-137691273/",
-        },
-    },
-    {
-        name: "AGUSTIN AMAYA",
-        title: "Ingeniero de Sistemas",
-        cvLink: "https://drive.google.com/your-link-agustin",
-        imageDefault: "/src/assets/img/Cards/TeamCards/CardA1.png",
-        imageHover: "/src/assets/img/Cards/TeamCards/CardA2.png",
-        socials: {
-            instagram: "https://www.instagram.com/agustinmy_/",
-            tiktok: "https://www.tiktok.com/@agustin.jhn",
-            linkedin: "https://www.linkedin.com/in/agust%C3%ADn-amaya-b3b110244/",
-        },
-    },
-    {
-        name: "KENNETH TELLER",
-        title: "Ingeniero de Sistemas",
-        cvLink: "https://drive.google.com/your-link-kenneth",
-        imageDefault: "/src/assets/img/Cards/TeamCards/CardK1.png",
-        imageHover: "/src/assets/img/Cards/TeamCards/Cardk2.png",
-        socials: {
-            instagram: "https://www.instagram.com/joan.teller2014/",
-            tiktok: "https://www.tiktok.com/@r4_teller2014",
-            linkedin: "https://www.linkedin.com/in/kenneth-teller-78686819a/",
-        },
-    },
-];
+import { useIsMobile } from "../hooks/useIsMobile";
+import { teamMembers } from "../data/team";
 
 const TeamSection: React.FC = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const isMobile = useIsMobile();
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+  const titleVariants: Variants = {
+    hidden: { opacity: 0, y: -40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.4, 0.2, 0.3, 1] },
+    },
+  };
 
+  const cardVariants = (i: number): Variants => ({
+    hidden: { y: 60, opacity: 0, scale: 0.85, rotate: -4 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.7,
+        delay: i * 0.15,
+        type: "spring",
+        stiffness: 60,
+        damping: 12,
+      },
+    },
+  });
 
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.1 });
+  return (
+    <section
+      id="team"
+      style={{
+        padding: isMobile ? "4rem 1rem" : "5rem 2rem",
+        background: "linear-gradient(to right, #031527, #020507)",
+        position: "relative",
+        fontFamily: "'Play', sans-serif",
+        overflow: "hidden",
+      }}
+    >
+      <img
+        src="/src/assets/Backgrounds/Vector Team.png"
+        alt="Team Word Background"
+        style={{
+          position: "absolute",
+          top: "10%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: isMobile ? "95%" : "80%",
+          opacity: 10,
+          zIndex: 0,
+        }}
+      />
 
-    // Variantes para animaciones
-    const titleVariants: Variants = {
-        hidden: { opacity: 0, y: -40 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0.2, 0.3, 1] } },
-    };
-    const cardVariants = (i: number): Variants => ({
-        hidden: { y: 60, opacity: 0, scale: 0.85, rotate: -4 },
-        visible: { y: 0, opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.7, delay: i * 0.15, type: "spring", stiffness: 60, damping: 12 } },
-    });
+      <motion.h2
+        variants={titleVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        style={{
+          textAlign: "center",
+          fontSize: "2.2rem",
+          color: "#FFFFFF",
+          fontWeight: "bold",
+          marginBottom: "1rem",
+          zIndex: 1,
+          position: "relative",
+          letterSpacing: "2px",
+          textShadow: "0 4px 24px #4498C2AA",
+        }}
+      >
+        TEAM WORK
+      </motion.h2>
 
-    return (
-        <section
-            id="team"
-            ref={ref}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 300px))",
+          gap: "2rem",
+          marginTop: "4rem",
+          zIndex: 1,
+          position: "relative",
+          justifyContent: "center",
+        }}
+      >
+        {teamMembers.map((member, index) => (
+          <motion.div
+            key={member.name}
+            variants={cardVariants(index)}
+            whileHover={{ scale: 1.08, boxShadow: "0 8px 32px #4498C2AA" }}
             style={{
-                padding: isMobile ? "4rem 1rem" : "5rem 2rem",
-                background: "linear-gradient(to right, #031527, #020507)",
-                position: "relative",
-                fontFamily: "'Play', sans-serif",
-                overflow: "hidden",
+              background: "rgba(255, 255, 255, 0.1)",
+              padding: "1rem",
+              borderRadius: "20px",
+              textAlign: "center",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+              position: "relative",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              backdropFilter: "blur(5px)",
             }}
-        >
-            {/* 🖼 Imagen PNG superpuesta con opacidad */}
-            <img
-                src="/src/assets/Backgrounds/Vector Team.png"
-                alt="Team Word Background"
-                style={{
-                    position: "absolute",
-                    top: "10%",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    width: isMobile ? "95%" : "80%",
-                    opacity: 10,
-                    zIndex: 0,
-                }}
+          >
+            <motion.img
+              src={member.imageDefault}
+              alt={member.name}
+              style={{
+                width: "100%",
+                height: "240px",
+                objectFit: "cover",
+                borderRadius: "15px",
+              }}
+              whileHover={{ opacity: 0 }}
             />
-
-            <motion.h2
-                variants={titleVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                style={{
-                    textAlign: "center",
-                    fontSize: isMobile ? "2.2rem" : "2.2rem",
-                    color: "#FFFFFF",
-                    fontWeight: "bold",
-                    marginBottom: "1rem",
-                    zIndex: 1,
-                    position: "relative",
-                    letterSpacing: "2px",
-                    textShadow: "0 4px 24px #4498C2AA"
-                }}
+            <motion.img
+              src={member.imageHover}
+              alt={`${member.name} Hover`}
+              style={{
+                width: "calc(100% - 2rem)",
+                height: "240px",
+                objectFit: "cover",
+                borderRadius: "15px",
+                position: "absolute",
+                top: "1rem",
+                left: "1rem",
+                opacity: 0,
+              }}
+              whileHover={{ opacity: 1 }}
+            />
+            <h3 style={{ color: "#fff", marginTop: "1rem" }}>{member.name}</h3>
+            <h2 style={{ color: "#4593C9", fontSize: "1.1rem" }}>{member.title}</h2>
+            <a
+              href={member.cvLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "1rem",
+                padding: "0.5rem 1.5rem",
+                borderRadius: "9999px",
+                background: "#FFFFFF",
+                color: "#0F172A",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#4498C2")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#FFFFFF")}
             >
-                TEAM WORK
-            </motion.h2>
-
-            {/* 🧑‍🤝‍🧑 Cards del equipo */}
-            <motion.div
-                variants={{}}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 300px))",
-                    gap: "2rem",
-                    marginTop: "4rem",
-                    zIndex: 1,
-                    position: "relative",
-                    justifyContent: "center",
-                }}
+              HOJA DE VIDA
+            </a>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "1.5rem",
+                marginTop: "1rem",
+              }}
             >
-                <AnimatePresence>
-                {teamMembers.map((member, index) => (
-                    <motion.div
-                        key={index}
-                        variants={cardVariants(index)}
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        whileHover={{ scale: 1.08, boxShadow: "0 8px 32px #4498C2AA" }}
-                        style={{
-                            background: "rgba(255, 255, 255, 0.1)",
-                            padding: "1rem",
-                            borderRadius: "20px",
-                            textAlign: "center",
-                            boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
-                            position: "relative",
-                            border: "1px solid rgba(255, 255, 255, 0.2)",
-                            backdropFilter: "blur(5px)",
-                            transition: "all 0.3s cubic-bezier(.4,2,.3,1)"
-                        }}
-                    >
-                        <motion.img
-                            src={member.imageDefault}
-                            alt={member.name}
-                            style={{
-                                width: "100%",
-                                height: "240px",
-                                objectFit: "cover",
-                                borderRadius: "15px",
-                                transition: "all 0.5s ease-in-out",
-                            }}
-                            whileHover={{ opacity: 0 }}
-                        />
-                        <motion.img
-                            src={member.imageHover}
-                            alt={`${member.name} Hover`}
-                            style={{
-                                width: 'calc(100% - 2rem)',
-                                height: "240px",
-                                objectFit: "cover",
-                                borderRadius: "15px",
-                                position: "absolute",
-                                top: "1rem",
-                                left: "1rem",
-                                transition: "all 0.5s ease-in-out",
-                                opacity: 0,
-                            }}
-                            whileHover={{ opacity: 1 }}
-                        />
-                        <h3 style={{ color: "#fff", marginTop: "1rem" }}>{member.name}</h3>
-                        <h2 style={{ color: "#4593C9", fontSize: "1.1rem" }}>{member.title}</h2>
-                        <a
-                            href={member.cvLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                                display: "inline-block",
-                                marginTop: "1rem",
-                                padding: "0.5rem 1.5rem",
-                                borderRadius: "9999px",
-                                background: "#FFFFFF",
-                                color: "#0F172A",
-                                fontWeight: 600,
-                                textDecoration: "none",
-                                transition: "background 0.3s ease",
-                            }}
-                            onMouseEnter={(e) => (e.currentTarget.style.background = "#4498C2")}
-                            onMouseLeave={(e) => (e.currentTarget.style.background = "#FFFFFF")}
-                        >
-                            HOJA DE VIDA
-                        </a>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '1rem' }}>
-                            <a href={member.socials.instagram} target="_blank" rel="noopener noreferrer" style={{color: 'white'}}>
-                                <FaInstagram size={24} />
-                            </a>
-                            <a href={member.socials.tiktok} target="_blank" rel="noopener noreferrer" style={{color: 'white'}}>
-                                <FaTiktok size={24} />
-                            </a>
-                            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" style={{color: 'white'}}>
-                                <FaLinkedin size={24} />
-                            </a>
-                        </div>
-                    </motion.div>
-                ))}
-                </AnimatePresence>
-            </motion.div>
-        </section>
-    );
+              <a
+                href={member.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "white" }}
+              >
+                <FaInstagram size={24} />
+              </a>
+              <a
+                href={member.socials.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "white" }}
+              >
+                <FaTiktok size={24} />
+              </a>
+              <a
+                href={member.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "white" }}
+              >
+                <FaLinkedin size={24} />
+              </a>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
+  );
 };
 
 export default TeamSection;
